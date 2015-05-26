@@ -1,6 +1,6 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 .browsehappy {
@@ -90,3 +90,44 @@ body {
     border-bottom: 0;
   }
 }
+
+
+.cursor .buttons .button:hover .backdrop {
+  opacity: 0.9;
+  -webkit-transform: scaleX(1.05) scaleY(1.14);
+}
+
+.buttons .button.facebook-login-button .backdrop {
+  background: -webkit-linear-gradient(top, #618ec2, #2e5098);
+}
+
+.buttons .button .backdrop {
+  background: #00bff3;
+  background: -webkit-linear-gradient(top, #4ec6f3, #1986cc);
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.1),2px 2px 6px rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 160ms ease-out;
+  opacity: 0.8;
+  -webkit-transform: translateZ(0);
+}
+
+.buttons .button {
+  color: #fff;
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font: 500 16px/56px "D","Lucida Grande",verdana,sans-serif;
+  margin: 0 20px 0 0;
+  padding: 0 1.5em;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  transition: all 280ms ease-out;
+  -webkit-transform: scale(0.9);
+  opacity: 0;
+ }

@@ -371,13 +371,13 @@ module.exports = function (grunt) {
       ],
       test: [
         'copy:styles'
-      ],
-      dist: [
-        'sass',
-        'copy:styles',
-        'imagemin',
-        'svgmin'
-      ]
+      ]//,
+     // dist: [
+     //   'sass',
+     //   'copy:styles',
+     //   'imagemin'//,
+        //'svgmin'
+//      ]
     }
   });
 
@@ -424,11 +424,15 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep',
     'useminPrepare',
-    'concurrent:dist',
+  //  'concurrent:dist',
+    'sass',
+    'copy:styles',
+    'imagemin',
+    'svgmin',
     'autoprefixer',
-    'concat',
-    'cssmin',
-    'uglify',
+   // 'concat',
+   // 'cssmin',
+   // 'uglify',
     'copy:dist',
     'modernizr',
     'rev',
