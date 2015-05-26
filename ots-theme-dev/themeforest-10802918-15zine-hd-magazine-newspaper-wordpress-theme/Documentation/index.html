@@ -1,0 +1,964 @@
+<!doctype html>
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<title>15Zine v1.0</title>
+
+
+	<meta name="generator" content="Documenter v2.5 http://rxa.li/documenter">
+	<meta name="date" content="2013-10-01T00:00:00+02:00">
+
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+	<link rel="stylesheet" href="assets/js/google-code-prettify/prettify.css" media="screen">
+	<script src="assets/js/google-code-prettify/prettify.js"></script>
+
+
+
+	<script src="assets/js/jquery.js"></script>
+
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+
+	<script>document.createElement('section');var duration='500',easing='swing';</script>
+	<script src="assets/js/script.js"></script>
+
+	<style>
+		html{background-color:#F2F2F2;color:#424242;}
+		::-moz-selection{background:#eb9812;color:#DDDDDD;}
+		::selection{background:#eb9812;color:#DDDDDD;}
+		#documenter_sidebar #documenter_logo{background-image:url(./assets/img/doc-logo.png);}
+		a{color:#2E58FF;}
+		.btn {
+			border-radius:3px;
+		}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -ms-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -webkit-gradient(linear, 0 0, 0 0088CC%, from(#3D3D3D), to(#0044CC));
+			  background-image: -webkit-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -o-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: linear-gradient(top, #0088CC, #0044CC);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088CC', endColorstr='#0044CC', GradientType=0);
+			  border-color: #0044CC #0044CC #bfbfbf;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  border-color: #0088CC #0088CC #bfbfbf;
+		  background-color: #0044CC;
+		}
+		hr{border-top:1px solid #EBEBEB;border-bottom:1px solid #FFFFFF;}
+		#documenter_sidebar, #documenter_sidebar ul a{background-color:#3D3D3D;color:#CCCCCC;}
+		#documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #3B3B3B;-moz-text-shadow:1px 1px 0px #3B3B3B;text-shadow:1px 1px 0px #3B3B3B;}
+		#documenter_sidebar ul{border-top:1px solid #3B3B3B; border-bottom: 2px solid #5E5E5E;}
+		#documenter_sidebar ul a{border-top:1px solid #3B3B3B;border-bottom:1px solid #3B3B3B;color:#DBDBDB;}
+		#documenter_sidebar ul a:hover{background:#eb9812;color:#fff;border-top:1px solid #eb9812;}
+		#documenter_sidebar ul a.current{background:#eb9812;color:#fff;border-top:1px solid #eb9812;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body class="documenter-project-cubell-v10">
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ul id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Introduction</a></li>
+
+            <li><a href="#installing_cubell" title="Installing 15Zine">Installing 15Zine</a></li>
+            <li><a href="#important_first_steps" title="Important First Steps">Important First Steps</a></li>
+			<li><a href="#adding_a_logo" title="Adding A Logo">Adding A Logo + Favicon</a></li>
+			<li><a href="#creating_the_homepage" title="Creating The Homepage ">Creating The Homepage </a></li>
+			<li><a href="#homepage_latest_posts_style" title="Homepage Latest Posts Style">Homepage Latest Posts Style</a></li>
+			<li><a href="#cubell_homepage_builder" title="15Zine Homepage Builder">15Zine Homepage Builder</a></li>
+			<li><a href="#cubell_megamenu_system" title="15Zine Megamenu System">15Zine Megamenu System</a></li>
+			<li><a href="#mobile_menu" title="Mobile Devices Menu">Mobile Devices Menu</a></li>
+			<li><a href="#infinite_scroll" title="Infinite Scroll">Infinite Scroll</a></li>
+			<li><a href="#global_styling" title="Global Styling">Global Styling</a></li>
+			<li><a href="#trending_menu" title="Trending Menu">Trending Menu</a></li>
+			<li><a href="#typography" title="Typography">Typography</a></li>
+			<li><a href="#featured_image_styles" title="Featured Image Styles">Featured Image Styles</a></li>
+			<li><a href="#featured_image_sizes" title="Recommended Image Styles">Recommended Image Sizes</a></li>
+			<li><a href="#featured_image_credit_line" title="Featured Image Credit Line ">Featured Image Credit Line </a></li>
+			<li><a href="#review_system" title="Review System">Review System</a></li>
+			<li><a href="#video_post_type" title="Video Post Type">Video Post Type</a></li>
+			<li><a href="#audio_post_type" title="Audio Post Type">Audio Post Type</a></li>
+            <li><a href="#gallery_post_type" title="Gallery Post Type">Gallery Post Type</a></li>
+            <li><a href="#post_background_slideshow" title="Post Background Slideshow">Post Background Slideshow</a></li>
+            <li><a href="#tile_galleries" title="Tile Galleries In Posts">Tile Galleries In Posts</a></li>
+			<li><a href="#post_with_pagination" title="Post With Pagination">Post With Pagination</a></li>
+			<li><a href="#full_screen_embeds" title="Full Screen Post Image Embeds">Full Screen Post Image Embeds</a></li>
+			<li><a href="#full_width_post" title="Full-Width Post">Full-Width Post or Page</a></li>
+			<li><a href="#contact_page" title="Contact Page">Contact Page</a></li>
+			<li><a href="#author_pages" title="Author Pages">Author Pages</a></li>
+			<li><a href="#category_settings" title="Category Settings">Category Settings</a></li>
+			<li><a href="#sidebars" title="Sidebars">Sidebars</a></li>
+			<li><a href="#advertisement" title="Advertisement">Advertisement</a></li>
+			<li><a href="#custom_code" title="Custom Code">Custom Code</a></li>
+			<li><a href="#analytics" title="Google Analytics Code">Google Analytics Code</a></li>
+			<li><a href="#avatars" title="Author Avatars">Author Avatars</a></li>
+			<li><a href="#footer" title="Footer">Footer</a></li>
+			<li><a href="#cubell_widgets" title="15Zine Widgets">15Zine Widgets</a></li>
+			<li><a href="#cubell_shortcodes" title="15Zine Shortcodes">15Zine Shortcodes</a></li>
+			<li><a href="#rtl_version" title="RTL version">RTL version</a></li>
+			<li><a href="#lightbox" title="Lightbox">Lightbox</a></li>
+			<li><a href="#customposttype" title="Custom Post Types">Custom Post Types</a></li>
+			<li><a href="#disqus" title="Disqus Integration">Disqus Integration</a></li>
+			<li><a href="#translation" title="Translation">Translation</a></li>
+			<li><a href="#updating_theme" title="Updating Theme">Updating Theme</a></li>
+			<li><a href="#demo_content" title="Importing Demo Content">Importing Demo Content</a></li>
+			<li><a href="#support" title="Support">Support</a></li>
+
+		</ul>
+		<div id="documenter_copyright">Copyright Cubell 2014<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v2.5</a>
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover">
+	<h1>15Zine v1.0</h1>
+
+	<div id="documenter_buttons">
+
+	</div>
+	<hr>
+	<ul>
+	   <li>By Cubell</li>
+	</ul>
+	<p>Thank you very much for purchasing 15Zine. The following documentation contains almost everything related to 15Zine, and if anything important has been overlooked, it will be added over time. Let's start :)</p>
+	</section>
+
+    <section id="installing_cubell">
+    <div class="page-header"><h3>Installing 15Zine</h3><hr class="notop"></div>
+<p>1- After downloading the theme from Themeforest, extract the contents of the downloaded zip file to your computer.</p>
+<p>2- In your Wordpress backend, go to <em>Appearance -&gt; Themes -&gt; Install Themes (top tab)</em>.</p>
+<p>3- Click the upload option (just under the tabs) and go to the folder where you extracted the previous zip file, and select the file called "15zine.zip"</p>
+<p>4- Click on "Install Now" and once completed select "Activate".</p>
+<p>5- You will see a notice about installing plugins that the theme uses. Click on "Begin installing plugins".</p>
+<p>6- Tick all of the plugins listed and then using the drop down underneath, select Install. Apply.</p>
+<p>7- Once they are all installed, click on "Return to Required Plugins installer" and tick all of the plugins once more, but this time, select "Activate" from the drop down and hit apply.</p>
+
+</section>
+
+
+
+    <section id="important_first_steps">
+    <div class="page-header"><h3>Important First Steps</h3><hr class="notop"></div>
+<p>
+    If you are installing 15Zine on a website that already has images uploaded, please follow these important steps once 15Zine is activated:</p>
+<p>
+    After logging into your admin Wordpress account:</p>
+<ol>
+    <li>
+        Go to <strong><em>Plugins -&gt; Add New&nbsp;</em></strong>and install a free plugin called &quot;<u><em>Force Regenerate Thumbnails</em></u>&quot;</li>
+    <li>
+        After Installing and activating it, go to <strong><em>Tools -&gt; Force Regenerate Thumbnails&nbsp;</em></strong></li>
+    <li>
+        Click on &quot;<em><u>Regenerate All Thumbnails</u></em>&quot; and wait until it is finished</li>
+</ol>
+<p>
+    This fixes all your existing images to work with 15Zine and only needs to be done once. You can delete the plugin after running it, as any images uploaded after 15Zine is active will have the appropriate thumbnails created automatically.</p>
+</section>
+<section id="adding_a_logo">
+	<div class="page-header"><h3>Adding Logos</h3><hr class="notop"></div>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm">
+	After logging into your admin Wordpress account:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm">
+	1- Go to <strong><em>Appearance &rarr; Logos&nbsp;</em></strong></p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm">
+	2- Click the <img alt="" src="./assets/img/plus-button.png"> button each of the logo options</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm">
+	3- Select/Upload your logo image and hit &ldquo;<u><em>Submit</em></u>&rdquo; button</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm">
+    4- Press the &ldquo;<u><em>Save Changes</em></u>&rdquo; button</p>
+ 
+
+</section>
+<section id="creating_the_homepage">
+	<div class="page-header"><h3>Creating The Homepage </h3><hr class="notop"></div>
+<p>
+	You have two main homepage options with 15Zine:</p>
+<p>
+	1- Make the homepage show the latest posts with the option of a grid/slider on top. To learn how to do this, go the the&nbsp;<a class="current" href="#homepage_latest_posts_style" title="Homepage Latest Posts Style">Homepage Latest Posts Style</a>&nbsp;section.</p>
+<p>
+	2- Build your own homepage using the &quot;<em><strong>15Zine Homepage Builder</strong></em>&quot;. To learn how to do this, go the the <a class="current" href="#cubell_homepage_builder" title="15Zine Homepage Builder">15Zine Homepage Builder</a>&nbsp;section.</p>
+</section>
+<section id="homepage_latest_posts_style">
+	<div class="page-header"><h3>Homepage Latest Posts Style</h3><hr class="notop"></div>
+<p>
+	To set up the homepage to show the latest posts:</p>
+<p>
+	1- In your Wordpress backend go To &quot;<strong><em>Settings -&gt; Reading&quot;&nbsp;</em></strong></p>
+<p>
+	2- Select &quot;<em><u>Your Latest Posts</u></em>&quot; in the &quot;<em><u>Front Page Displays</u></em>&quot; option.</p>
+<p>
+	3- Go To &quot;<strong><em>Appearance -&gt; Theme Options -&gt; Homepage&quot;</em></strong></p>
+<p>
+	4- Select a blog style to use on the homepage.</p>
+<p>
+	5- Optional: To add a grid or slider at the top of the posts, select an option from &quot;<em><u>Featured Posts</u></em></p>
+<p>
+	6- Optional: To only show a specific category or multiple categories, tick the categories you want to show on the grid/slider in the &quot;<em><u>Grid/Slider Category Filter</u></em>&quot; option</p>
+</section>
+<section id="cubell_homepage_builder">
+	<div class="page-header"><h3>15Zine Homepage Builder</h3><hr class="notop"></div>
+<p>
+	15Zine comes with a unique homepage drag &amp; drop builder that does not use shortcodes or need any type of code to be inputted (Horrah!) and allows you to quickly create or change complicated homepage layouts within a few clicks.&nbsp;</p>
+<p>
+	<u><em>You can mix and match the modules, grids, ad blocks and  special module that accepts custom code (HTML, shortcodes, special ads, etc)</em></u></p>
+<p>
+	&nbsp;</p>
+<p>
+	To build a unique homepage using the &quot;<em><strong>15Zine Homepage Drag &amp; Drop Builder</strong></em>&quot;</p>
+<p>
+	1- Add/Edit a page with a suitable name</p>
+<p>
+	2- In the &quot;<em><u>Page Attributes</u></em>&quot; box, set the template to &quot;<u><em>15Zine Drag &amp; Drop Builder</em></u>&quot;</p>
+<p>
+	3- Scroll down to see the &quot;<u><em>15Zine Drag &amp; Drop Builder</em></u>&quot; box</p>
+
+	There are five sections that compose a 15Zine Homepage. They are all optional.</p>
+<p>
+	Section A is a full-width section.</p>
+<p>
+	Section A2 is a section that is full-screen width.</p>
+<p>
+	Section B is a section that has a sidebar.</p>
+
+<p>
+	Section C is a full-width section.</p>
+<p>
+	4- Click on &quot;<em style="text-decoration: underline;">Add N</em><u><em>ew</em></u>&quot; In any of the sections and you will be able to select the type of module to use and select the details for that module.</p>
+<p>
+	5- Once all your modules are setup Publish/Update your page.</p>
+<p>
+	6- Go to&nbsp;<strong><em>Appearance &rarr; Widgets</em></strong></p>
+<p>
+	7- Depending if you added modules to Sections B, you will now see two new sidebar areas called &quot;<u><em>Section B Sidebar (Page Name)</em></u>&quot;, add widgets to this sidebar and it will appear next to the modules set in those sections. Alternatively, you can use the "Custom Sidebar" option inside the "Page options" metabox to select an existing sidebar.</p>
+<p>
+	8- In your Wordpress backend go To &quot;<strong><em>Settings -&gt; Reading&quot;&nbsp;</em></strong></p>
+<p>
+	9- In the "Front Page Displays" choose the "A static page (select below)" option and in the "Front Page" setting choose the homepage page you created earlier.</p>
+
+<p>
+	&nbsp;</p>
+
+</section>
+<section id="cubell_megamenu_system">
+	<div class="page-header"><h3>15Zine Megamenu System</h3><hr class="notop"></div>
+<p>
+	15Zine comes with a complex megamenu system that is very easy to use.</p>
+<p>
+	To use a 15Zine megamenu:</p>
+<p>
+	1- Go to&nbsp;<strong><em>Appearance -&gt; Menus</em></strong></p>
+<p>
+	2- Setup the menus as normal. (Good guide:&nbsp;<a href="http://codex.wordpress.org/WordPress_Menu_User_Guide">http://codex.wordpress.org/WordPress_Menu_User_Guide</a>)</p>
+<p>
+	3- Each parent menu entry has an option called &quot;<em><strong>15Zine Megamenu Type</strong></em>&quot; where you can select the type of megamenu.</p>
+<p>
+	&nbsp;</p>
+<p>
+	For categories there are three options available:</p>
+<p>
+	A-&nbsp;Normal Dropdown</p>
+<p>
+	B-&nbsp;15Zine Category/Posts megamenu</p>
+<p>
+	C-&nbsp;15Zine Text Columns Megamenu</p>
+<p>
+	D- 15Zine Megamenu</p>
+<p>
+	For every other type of menu entry (page, custom, link, etc) there are two options available:</p>
+<p>
+	A-&nbsp;Normal Dropdown</p>
+<p>
+	B-&nbsp;15Zine Category/Posts megamenu</p>
+
+	<p>
+    An example of how a megamenu should be structured:</p>
+<p>
+    <img alt="" src="./assets/img/example-megamenu-setup.png"></p>
+    <p>
+    This menu layout comes out like this:</p>
+<p>
+    <img alt="" src="./assets/img/example-megamenu.png"></p>
+</section>
+
+<section id="mobile_menu">
+	<div class="page-header"><h3>Mobile Devices Menu</h3><hr class="notop"></div>
+<p>
+	In order to have full control of every detail, the mobile device menu is separate from the main navigation menu. This allows you to have control over what you want mobile users to see in the mobile navigation menu.</p>
+<p>
+	To set the mobile menu:</p>
+<p>
+	1- Go to&nbsp;<strong><em>Appearance -&gt; Menus</em></strong></p>
+<p>
+	2- Setup a menu as normal, or if you want, you could also use an existing menu (Good guide:&nbsp;<a href="http://codex.wordpress.org/WordPress_Menu_User_Guide">http://codex.wordpress.org/WordPress_Menu_User_Guide</a>)</p>
+<p>
+	3- Set that menu to appear for the "(Mobiles devices) Main Navigation Menu" option.</p>
+<p>
+	&nbsp;</p>
+
+</section>
+<section id="infinite_scroll">
+	<div class="page-header"><h3>Infinite Scroll</h3><hr class="notop"></div>
+<p>
+	You can give categories/tags/blog style homepages the option to show posts using an infinite scroll system.</p>
+<p>
+	To enable infinite scroll on a blog style homepage</p>
+<p>
+	1- Go to&nbsp;<strong><em>Appearance &rarr; Theme Options&nbsp;</em></strong><strong><em>&rarr;</em></strong><strong><em>&nbsp;Homepage</em></strong></p>
+<p>
+	2- Under the "Infinite Scroll" option, select an option from the dropdown. It can be either set to "Off / Infinite Scroll / Infinite Scroll with Load More Button".</p>
+<p>
+	To enable infinite scroll on a category/tag page</p>
+<p>
+	1- Go to&nbsp;<strong><em>Posts &rarr; Categories or Tags&nbsp;</em></strong></p>
+<p>
+	2- Add/Edit a category/tag and you will see an "Infinite Scroll" option, select an option from the dropdown. It can be either set to "Off / Infinite Scroll / Infinite Scroll with Load More Button" and save the category settings.</p>
+<p>
+	&nbsp;</p>
+<p>
+	Couldn't be simpler.</p>
+
+</section>
+<section id="global_styling">
+	<div class="page-header"><h3>Global Styling</h3><hr class="notop"></div>
+<p>
+	To set the base global style for the entire website, including background images/colors and color for menu hovers, review colors. You can change them in the theme options.</p>
+	<p>
+    These options are applied to the entire website, however, if a category has its own global color and/or background options, then they will override whatever is set in the global style options.</p>
+<p>
+	1- Go to&nbsp;<strong><em>Appearance &rarr; Theme Options&nbsp;</em></strong><strong><em>&rarr;</em></strong><strong><em>&nbsp;Design</em></strong></p>
+<p>
+	2- Set global colors and/or global background options</p>
+
+</section>
+<section id="trending_menu">
+	<div class="page-header"><h3>Trending Menu</h3><hr class="notop"></div>
+<p>15Zine introduces a new feature to the marketplace: The Trending megamenu option. This option adds a menu item to the main navigation menu and shows the most popular posts right now (today), in the week and in the month. To add this feature:</p>
+<p>1- Install Wordpress Jetpack <a href="http://wordpress.org/plugins/jetpack/installation/">Steps can be found here</a></p>
+<p>2- Activate the Jetpack Module called "stats". This module provides free and highly accurate stats that the theme makes use of.</p>
+<p>3- Go to&nbsp;<strong><em>Appearance &rarr; Theme Options&nbsp;</em></strong><strong><em>&rarr;</em></strong><strong><em>&nbsp;Menus</em></strong></p>
+<p>4- Enable the "Add most popular megamenu to main navigation menu" option, and to change the word and icon, use the options that appear.</p>
+
+</section>
+<section id="typography">
+	<div class="page-header"><h3>Typography</h3><hr class="notop"></div>
+<p>
+	15Zine can use any of the several hundreds of Google fonts available. You can select one font for the body text (often a clean, light font) and another font for everything else (menu font, titles, etc).</p>
+<p>
+	15Zine comes with a dropdown option of recommended fonts:</p>
+<p>
+	1- Go to <strong><em>Appearance -&gt; Theme Options -&gt; Typography </em></strong></p>
+<p>
+	2- Select a font for the heading and one for the body</p>
+<p>
+	3- Click on &ldquo;<u><em>Save Changes</em></u>&rdquo;</p>
+<p>
+	&nbsp;</p>
+<p>
+	To use a Google Font not in the dropdown lists:</p>
+<p>
+	1- Go to<em><strong> Appearance -&gt; Theme Options -&gt; Typography </strong></em></p>
+<p>
+	2- From the dropdown of the font options, select "Other Google Font" and then enter the code provided by Google Fonts in Quickuse Step 4 into the &ldquo;<u><em>Other Google Font</em></u>&rdquo; box that appears, but without the &ldquo;Font-family:&rdquo; part. Example if step 4 says <em><u>font-family: &#39;Cantora One&#39;, sans-serif;</u></em> you should only enter <em><u>&#39;Cantora One&#39;, sans-serif;</u></em></p>
+<p>
+	3- Click on &ldquo;<u><em>Save Changes</em></u>&rdquo;</p>
+<p>
+	&nbsp;</p>
+	<p>
+	Each post can use its own different fonts for the article body, simply edit the post you want to have custom fonts, and in the 15Zine Post Options -> Layout Options and enable the "Load Specific Fonts for article". Now simply choose your fonts and save the changes.</p>
+</section>
+<section id="featured_image_styles">
+	<div class="page-header"><h3>15Zine Featured Image Styles</h3><hr class="notop"></div>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm">
+	<font face="Arial, sans-serif">With 15Zine you can easily show your featured image in different styles. To do this:</font></p>
+<p>
+	1- Add or edit a post&nbsp;with a suitable name</p>
+<p>
+	2- Set a featured image (Good tutorial: <a href="http://en.support.wordpress.com/featured-images/">http://en.support.wordpress.com/featured-images/</a>&nbsp;)</p>
+<p>
+	3- Inside the&ldquo;<u><em>15Zine Post Options</em></u>&rdquo; box select the "Featured Image Options" tab and then click on the image of the Featured image style you wish to use:</p>
+<p>
+    4- Publish/Update the post</p>
+</section>
+<section id="featured_image_sizes">
+	<div class="page-header"><h3>Recommended Featured Image Sizes</h3><hr class="notop"></div>
+<p>
+	These are the recommended minimum image sizes for the different styles, these are only recommendations to ensure images don't look too pixelated on the biggest desktop screens, but if your images are smaller, it should still work fine.</p>
+<p><strong>Minimum for standard featured image style:</strong> 750px width x 500px height</p>
+
+<p><strong>Parallax/Full-Background/Slideshows:</strong> 1400px width x 600px height</p>
+
+</section>
+<section id="featured_image_credit_line">
+	<div class="page-header"><h3>Featured Image Credit Line </h3><hr class="notop"></div>
+<p>
+	With 15Zine you can add an optional credit line for the featured image. To do this:</p>
+<p>
+	1- Add/Edit a post&nbsp;with a suitable name</p>
+<p>
+	<font face="Arial, sans-serif">2-&nbsp;</font>Inside the&ldquo;<em><strong>15Zine Post Options</strong></em>&rdquo; there is a textbox called &quot;<u><em>Featured Image Credit Line</em></u>&quot;. Add the credit line there, which can be in plain text or HTML (if you need to add a link).</p>
+<p>
+	3- To add an icon before the credit line, simply go to <a href="fortawesome.github.io/Font-Awesome/icons/">Font Awesome Icons</a> and click on the relevant icon you want to show, and copy/paste the code given into the credit line box.</p>
+<p>
+	4- Publish/Update post</p>
+<p>
+	&nbsp;</p>
+<p>
+	Example of a credit line using HTML to add a link:</p>
+<p>
+	&lt;i class="fa fa-camera"&gt;&lt;/i&gt; Photo Copyright: &lt;a href=&quot;http://this-is-the-website-of-someone&quot;&gt;John Doe&lt;/a&gt;</p>
+</section>
+<section id="review_system">
+	<div class="page-header"><h3>Review System</h3><hr class="notop"></div>
+<p>
+	To add a review box to a post:</p>
+<p>
+	1- Add/Edit a post&nbsp;with a suitable name</p>
+<p>
+	2- Inside the&ldquo;<u><em>15Zine Post Options</em></u>&rdquo; there is a tab called "Review Options"</p>
+<p>
+	3- Once you turn the Enable Review option to on, fill in all the details for the review.</p>
+<p>
+	4- Publish/Update the post</p>
+</section>
+<section id="video_post_type">
+	<div class="page-header"><h3>Video Post Type</h3><hr class="notop"></div>
+<p>
+	To make the post a &quot;<em><strong>Video</strong></em>&quot; post type and show a specific video:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	After logging into your admin Wordpress account:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	1- Add or edit a post&nbsp;with a suitable name</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	2- In the &quot;<em><u>Format</u></em>&quot; box, select &quot;<em>Video</em>&quot;</p>
+<p>
+	<img alt="" src="./assets/img/video-post-format.png"></p>
+<p>
+	3- A new metabox will appear above your post content (15Zine Post Format: Video), select the style of video post you want (replace the featured image with your video or add a play button on top of the featured image), and then enter the video embed code in the "Video Embed code". Example On a Youtube video click on &quot;<u><em>Share</em></u>&quot; then &quot;<u><em>embed</em></u>&quot; and copy the code provided</span></p>
+<p>
+	<font color="#333333" face="sans-serif"><span style="line-height: 16.796875px;">4- Publish/Update the post</span></font></p>
+</section>
+<section id="audio_post_type">
+	<div class="page-header"><h3>Audio Post Type</h3><hr class="notop"></div>
+<p>
+	To make the post a &quot;<em><strong>Audio</strong></em>&quot; post type and include a song:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	After logging into your admin Wordpress account:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	1- Add or edit a post&nbsp;with a suitable name</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	2- In the &quot;<em><u>Format</u></em>&quot; box, select &quot;<em>Audio</em>&quot;</p>
+<p>
+	<img alt="" src="./assets/img/audio-post-format.png"></p>
+<p>
+	3- A new metabox will appear above your post content (15Zine Post Format: Audio), select the source (External or self-hosted audio), then select the style (replace the featured image with your audio or add a play button on top of the featured image) and then enter the audio embed code in the "Audio Embed Code" box that appears. Example On a Soundcloud song click on &quot;<u><em>Share</em></u>&quot; then and copy the code provided in the &quot;<em><u>Widget Code</u></em>&quot; box.</span></p>
+<p>
+	<font color="#333333" face="sans-serif"><span style="line-height: 16.796875px;">4- Publish/Update the post</span></font></p>
+</section>
+<section id="gallery_post_type">
+	<div class="page-header"><h3>Gallery Post Type</h3><hr class="notop"></div>
+<p>
+	To make the post a &quot;<b><i>Gallery</i></b>&quot; post type and have a gallery slider:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	After logging into your admin Wordpress account:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	1- Add or edit a post&nbsp;with a suitable name</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	2- In the &quot;<em><u>Format</u></em>&quot; box, select &quot;<em>Gallery</em>&quot;</p>
+<p>
+	<img alt="" src="./assets/img/gallery-post-format.png"></p>
+<p>
+	3- A new metabox will appear above your post content (15Zine Post Format: Gallery), click on the &quot;<em><u>Create Gallery</u></em>&quot; button and select/upload the images. You also have the option to remove the site's header area (only top menu and main navigation will appear), to maximise the visual space for the gallery.&nbsp;</span></p>
+<p>
+	<font color="#333333" face="sans-serif"><span style="line-height: 16.796875px;">4- Publish/Update the post</span></font></p>
+</section>
+<section id="post_background_slideshow">
+    <div class="page-header"><h3>Post Background Slideshow</h3><hr class="notop"></div>
+<p>To create a post with a background slideshow as seen on <a href="http://15zine.cubellthemes.com/fashion/featured-image-slideshow/">http://15zine.cubellthemes.com/fashion/featured-image-slideshow/</a>:</p>
+<p>1- Edit/Add a post.</p>
+<p>2- In the <em><strong>15Zine Post Options</strong></em> box select the "Featured image options" tab.</p>
+<p>3- Select "Slideshow" from the featured image style options and click on the "Create Gallery" button to create your slideshow</p>
+<p>4- Select/Upload the images you wish to have in the background slideshow</p>
+<p>5- Update/Publish the post</p>
+</section>
+<section id="tile_galleries">
+    <div class="page-header"><h3>Tile Galleries In Posts</h3><hr class="notop"></div>
+    <p>To add a tile gallery like the one seen at the end of <a href="http://15zine.cubellthemes.com/design/parallax-story-post/">http://15zine.cubellthemes.com/design/parallax-story-post/</a>:</p>
+<p>1- Install Wordpress Jetpack <a href="http://wordpress.org/plugins/jetpack/installation/">Steps can be found here</a></p>
+<p>2- Activate the Jetpack Module called "Tiled Galleries"</p>
+<p>3- Edit/Add a post</p>
+<p>4- Create and add a new Wordpress gallery and select the "Tiled" type. <a href="http://en.support.wordpress.com/images/gallery/">Tutorial can be found here</a></p>
+<p>5- Update/Publish the post</p>
+</section>
+<section id="post_with_pagination">
+	<div class="page-header"><h3>Post With Pagination</h3><hr class="notop"></div>
+<p>
+	To make a long post have several pages (add pagination) simply add&nbsp;<strong style="color: rgb(68, 68, 68); font-family: 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 15px; line-height: 24px;">&lt;!-</strong><strong style="color: rgb(68, 68, 68); font-family: 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 15px; line-height: 24px;">-nextpage-</strong><strong style="color: rgb(68, 68, 68); font-family: 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 15px; line-height: 24px;">-&gt;&nbsp;</strong>in the post text-editor where you would like split the post. Note: You must be in "text" view when editing the post to paste that code.</p>
+
+</section>
+
+<section id="full_screen_embeds">
+	<div class="page-header"><h3>Full Screen Post Image Embeds</h3><hr class="notop"></div>
+<p>15Zine has the ability to make some images become responsive and full-screen sized inside the post. To create a post this way simply:</p>
+<p>
+	1- Add/Edit a post&nbsp;with a suitable name</p>
+<p>
+	<font face="Arial, sans-serif">2-&nbsp;</font>Inside the&ldquo;<em><strong>15Zine Post Options</strong></em>&rdquo; there is a tab called "layout options". Select the "No sidebar" option and then make sure the "full-screen width image embeds" is enabled.</p>
+<p>
+	3- Wherever you want a full-screen embed inside the post, simply embed an image the normal way (Add Media button), and simply set it to be "Align: none" and to use the "Full-Size".</p>
+<p>
+	4- Publish/Update post and let 15zine do all the magic.</p>
+
+</section>
+	
+<section id="full_width_post">
+	<div class="page-header"><h3>Full-Width Post</h3><hr class="notop"></div>
+<p>
+	15Zine allows you to have posts that don&#39;t use a sidebar (full-width). To do this:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm">
+	<font face="Arial, sans-serif">1- Add or edit a post&nbsp;</font>with a suitable name</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm">
+	<font face="Arial, sans-serif">2-&nbsp;</font>Inside the&ldquo;<em><strong>15Zine Posts Options</strong></em>&rdquo; click on the "Layout Options" tab and select the style of sidebar you wish to use</p>
+<p>
+	3- Publish/Update the post or page</p>
+</section>
+<section id="contact_page">
+	<div class="page-header"><h3>Contact Page</h3><hr class="notop"></div>
+<p>
+	To have a contact page like the one seen on the 15Zine demo:</p>
+<p>
+	1- Go to&nbsp;<strong><em>Plugins &lt; Add New</em></strong></p>
+<p>
+	2- Search for &quot;<em><u>Contact Form 7</u></em>&quot; and install it</p>
+<p>
+	3- After activating the plugin, there will be a new option in your Wordpress backend. Go to <em><strong>Contact</strong></em></p>
+<p>
+	4- There will be a default contact form created, simply copy the code of it under &quot;<em><u>Shortcode</u></em>&quot; (should be similar to:&nbsp;[contact-form-7 id=&quot;2841&quot; title=&quot;Contact form 1&quot;])</p>
+<p>
+	5- Add/Edit a page&nbsp;with a suitable name</p>
+<p>
+	6- Paste the shortcode code of the contact form&nbsp;</p>
+<p>
+	7- Publish/Update the page</p>
+<p>
+	&nbsp;</p>
+<p>
+	15Zine already comes with predefined styles for Contact Form 7.</p>
+</section>
+<section id="author_pages">
+	<div class="page-header"><h3>Author Pages</h3><hr class="notop"></div>
+<p>
+	15Zine comes with multiple author template pages.</p>
+<p>
+	1- Add/Update a new page&nbsp;with a suitable name</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	<font face="Arial, sans-serif">2-&nbsp;</font>Inside the&ldquo;<em><strong>Page Attributes</strong></em>&rdquo; &nbsp;box click on the&nbsp;<em><strong>Template&nbsp;</strong></em>dropdown and select either &quot;<i><u>15zine Meet the team</u></i>&quot; or &quot;<i><u>15zine Meet the team (no sidebar)</u></i>&quot;.</p>
+<p>
+	3- Publish/Update the page</p>
+<p>
+	4- Go to&nbsp;<strong><em>Users &rarr; All users</em></strong></p>
+<p>
+	5- Edit the users you want to show on the <em><strong>15zine Meet the team</strong></em> template</p>
+<p>
+	6- Under the &quot;<em><u>15zine Meet The Team Page Template Options</u></em>&quot; title tick the &quot;<em><u>Show User On Template</u></em>&quot; checkbox</p>
+<p>
+	7- Optional Step:&nbsp;Authors will appear in alphabetical order by default. If you wish to override the order and put a specific few authors in the first positions, you can specify a position in the &quot;<em><u>Template Order Override</u></em>&quot;.</p>
+<p>
+	8- Update profile</p>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="category_settings">
+	<div class="page-header"><h3>Category Settings</h3><hr class="notop"></div>
+<p>
+	You can customize each category to look different. This is very easy to do, when creating a new category (or editing an existing one) you will see 15Zine-exclusive options:</p>
+<p>
+	<strong><em>Blog Style:&nbsp;</em></strong>This changes the way post are displayed on the category page.</p>
+
+<p>
+	<strong><em>Category Global Color:&nbsp;</em></strong>This color sets the main color for the category (Menu hover color, review boxes, etc)</p>
+<p>
+	<strong><em>Show Grid Slider:&nbsp;</em></strong>This adds a grid or a slider above the posts displayed on a category page.</p>
+<p>
+	<strong><em>Custom Sidebar:&nbsp;</em></strong>Enable/Disable a custom sidebar for the category. To read more on this go to the <a class="current" href="#sidebars" title="Sidebars">Sidebars</a> section in this documentation.</p>
+<p>
+	<strong><em>Background Options:&nbsp;</em></strong>Give the category a custom background, can be an image or a background color.</p>
+</section>
+<section id="sidebars">
+	<div class="page-header"><h3>Sidebars</h3><hr class="notop"></div>
+<p>
+	You can set custom sidebars to any page or category.</p>
+<p>
+	&nbsp;</p>
+<p>
+	To give a category a unique sidebar:</p>
+<p>
+	After logging into your admin Wordpress account:</p>
+<p>
+	1- In your Wordpress backend, go to &quot;<em><strong>Posts -&gt; Categories</strong></em>&quot;</p>
+<p>
+	2- Add/Edit a category and in the &quot;<em><strong>15Zine Options -&gt; General Options</strong></em>&quot; set the dropdown option called &quot;<em><u>Custom Sidebar</u></em>&quot; to &quot;<em><u>on</u></em>&quot;</p>
+<p>
+	3- Add/Save the category</p>
+<p>
+	4- Go to &quot;<em><strong>Appearance -&gt; Widgets</strong></em>&quot; and there will now be a new unique widget area with the name of that category. Add widgets to it and the category will show that unique sidebar.</p>
+<p>
+	&nbsp;</p>
+<p>
+	To give a page a unique sidebar:</p>
+<p>
+	After logging into your admin Wordpress account:</p>
+<p>
+	1- Add/Edit a page</p>
+<p>
+	2- In the &quot;<em><strong>15Zine Post Options</strong></em>&quot; select the "Layout options" tab, set the option called &quot;<em><u>Custom Sidebar</u></em>&quot; to &quot;<em><u>on</u></em>&quot;</p>
+<p>
+	3- Add/Save the page</p>
+<p>
+	4- Go to &quot;<em><strong>Appearance -&gt; Widgets</strong></em>&quot; and there will now be a new unique widget area with the name of that page. Add widgets to it and the page will show that unique sidebar.</p>
+</section>
+<section id="advertisement">
+	<div class="page-header"><h3>Advertisement</h3><hr class="notop"></div>
+<p>
+	15Zine includes multiple options for advertisement.</p>
+
+<p>
+	To add a<em><strong> 728x90 or 468x60</strong></em> advertisement block next to the logo (header area):</p>
+<p>
+	1- Go to&nbsp;<strong><em>Appearance &rarr; Theme Options&nbsp;</em></strong><strong><em>&rarr;</em></strong><strong><em>&nbsp;Advertisement</em></strong></p>
+<p>
+	2- Select the size of ad you wish to use and enter the banner code into the &quot;<em><u>Banner Code</u></em>&quot; box:</p>
+
+<p>
+	You can enter any type of code into the &quot;<em><u>Banner Code</u></em>&quot; box. For ad networks such as Google Adsense, simply copy and paste the code they provide you with. If you only have a banner image and you want to make it clickable to a specific URL, you can enter code like this:</p>
+<pre class="prettyprint lang-html linenums">
+&lt;a href=&quot;http://this-is-the-url-you-want-to-link-to&quot;&gt;&lt;img src=&quot;http://this-is-the-url-of-the-image-banner&quot; alt=&quot;&quot;&gt;&lt;/a&gt;</pre>
+<p>
+	&nbsp;</p>
+<p>
+	To add a <em><strong>970x90, 728x90 or 336x280</strong></em> ad on a homepage that uses the &quot;<em><strong>15Zine Drag &amp; Drop Builder</strong></em>&quot;</p>
+<p>
+	1- Edit (or add) the homepage page</p>
+<p>
+	2- In the &quot;<em><strong>15Zine Drag &amp; Drop Builder</strong></em>&quot; box click on the&nbsp;<img alt="" src="./assets/img/add-button.png">&nbsp;button of the section where you wish to show an ad</p>
+<p>
+    3- Select the ad size desired and enter the ad code in the box below,&nbsp;</p>
+<p>
+    4- Publish/Update the page&nbsp;</p>
+<p>
+    To add a 336x280 ad on a sidebar (or footer), all that is needed is the Wordpress Text Widget. Add similar code to that explained above and it will output fine.&nbsp;</p>
+<div class="page-header"><h4>Background Takeover Ads</h4><hr class="notop"></div>
+<p>
+   This feature was introduced in the v1.1 update. To set it up, you can find all the options in <strong><em>Appearance -&gt; Theme Options&nbsp;</em></strong><strong><em>-&gt;</em></strong><strong><em>&nbsp;Advertisement</em></strong> &nbsp;
+</p>
+<p><strong>Options:</strong></p>
+<p><strong>Background Takeover Ad:</strong> This option is used to turn the Background Takeover on/off. Choose between "Off/Global/Only Homepage".</p>
+<p><strong>Background Takeover Ad Image:</strong> Select/upload the image for the background. In the theme package you will find a folder called "Background Ad Templates", inside of which are four template files to create background ads, if needed.</p>
+<p><strong>Background Takeover Ad Link:</strong> Enter the URL that clicking the background image should open.</p>
+<p><strong>Top Margin Of Content:</strong> Some sponsors will request to have the top of the ad visible, this option allows you to move the content of the website down to show the top part of the ad. A template for this type of ad is also included in the "Background Ad Templates" folder.</p>
+
+</section>
+<section id="custom_code">
+	<div class="page-header"><h3>Custom Code</h3><hr class="notop"></div>
+<p>
+	You can add CSS code or code that you want to add to the &lt;head&gt; or &lt;footer&gt; sections by using the Theme Options. This way your changes will not be lost if you update the theme.</p>
+<p>
+	To add custom code:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	After logging into your admin Wordpress account:</p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	1- Go to&nbsp;<strong><em>Appearance -&gt; Theme Options&nbsp;</em></strong><strong><em>-&gt;</em></strong><strong><em>&nbsp;Custom Code</em></strong></p>
+<p class="western" lang="en-GB" style="margin-bottom: 0cm;">
+	2- Enter your custom code in the relevant box (CSS box, &lt;head&gt; box or &lt;footer&gt; box)</p>
+</section>
+<section id="analytics">
+	<div class="page-header"><h3>Google Anayltics Code</h3><hr class="notop"></div>
+<p>
+	To add Google Anayltics code, simply copy and paste the code they provide you and add it to the "Code for &lt;head&gt; section" in the "Custom Code" tab in the Theme Options. Ensure the code goes in this box, as this is what <a href="https://support.google.com/webmasters/answer/185871" target="_blank">Google recommends.</a> </p>
+</section>
+<section id="avatars">
+	<div class="page-header"><h3>Author Avatars</h3><hr class="notop"></div>
+<p>
+	To give authors avatar images (that appear in the about the author box, comments sections, etc - you have two options: </p>
+
+<p>1- Install a free plugin called "Simple local avatars" which when installed, adds a image upload option in the "edit profile" page to upload an image and use as avatar. </p>
+
+<p>2- Create a free account on http://www.gravatar.com and make sure the email of the user is the one used to create the Gravatar account.  </p>
+</section>
+<section id="footer">
+	<div class="page-header"><h3>Footer</h3><hr class="notop"></div>
+<p>
+	15Zine comes with several options for the footer.</p>
+<p>
+	Go to&nbsp;<strong><em>Appearance -&gt; Theme Options&nbsp;</em></strong><strong><em>-&gt;</em></strong><strong><em>&nbsp;Footer</em></strong></p>
+<p>
+	There you can enter a &quot;<u><em>copyright line</em></u>&quot; to go at the bottom of the site.</p>
+<p>
+	And you can select the number of widget areas to go in the footer (3 or 4) with varying layout styles:</p>
+
+<p>
+	To add widgets to the each footer area:</p>
+<p>
+	1- Go to&nbsp;<strong><em>Appearance &rarr; Widgets&nbsp;</em></strong></p>
+<p>
+	2- Drag and drop widgets into the widget areas&nbsp;<em><u>Footer 1</u></em>, <em><u>Footer 2</u></em>, <u><em>Footer 3</em></u> and <u><em>Footer 4</em></u> (this is only visible if the <em><u>Footer Layout</u></em> is set to &quot;<u><em>Style B</em></u>&quot;)</p>
+</section>
+<section id="cubell_widgets">
+	<div class="page-header"><h3>15Zine Widgets</h3><hr class="notop"></div>
+<p>
+	15Zine comes with x widgets:</p>
+<p>
+	<em><strong>15Zine 125px x 125px ads:&nbsp;</strong></em>This widget allows you to add the code to six different 125px/125px ads. Simply copy and paste the ad code into each option and the widget will output it all. Code can be any type of code.&nbsp;</p>
+<p>
+	&nbsp;If you only banner images and you want to make them all clickable to specific URLs, you can enter code like this to the options:</p>
+<pre class="prettyprint lang-html linenums">
+&lt;a href=&quot;http://this-is-the-url-you-want-to-link-to&quot;&gt;&lt;img src=&quot;http://this-is-the-url-of-the-image-banner&quot; alt=&quot;&quot;&gt;&lt;/a&gt;</pre>
+<p>
+	&nbsp;</p>
+<p>
+    <em><strong>15Zine Facebook Like Box:&nbsp;</strong></em>This widget shows a Facebook Like Box of any Facebook page. Add to increase the likes on your page.&nbsp;</p>
+<p>
+    <em><strong>15Zine Google+ Follow Widget:&nbsp;</strong></em>This widget shows a Google+ Follow widget for a Google+ page. Add to increase the follows on your page.&nbsp;</p>
+<p>
+    <em><strong>15Zine High Resolution Image Widget:&nbsp;</strong></em>This widget shows a single image with the option to set a high resolution (Retina) image. Recommended for footer logos.&nbsp;</p>
+<p>
+    <em><strong>15Zine Popular Posts:&nbsp;</strong></em>This widget shows the most popular posts (by comments or views) from a specific category or all categories. You can also set the number of posts to show and show them with either big thumbnails or small thumbnails.</p>
+<p>
+	<strong><em>15Zine Latest Posts:</em></strong> This widget shows the latest posts from a specific category or all categories. You can also set the number of posts to show and show them with either big thumbnails or small thumbnails.</p>
+<p>
+	<strong><em>15Zine Latest Posts Slider:&nbsp;</em></strong>This widget shows the latest posts from a specific category or all categories in a slider. You can also set the number of posts to show.</p>
+<p>
+	<strong><em>15Zine Multi-Widget:&nbsp;</em></strong>This widget is used to show multiple widgets in one. To use it:</p>
+<p>
+	1- Drag multiple widgets to the &quot;<em><u>15Zine Multi-Widgets Area</u></em>&quot;</p>
+<p>
+	2- Drag the &quot;<u><em>15Zine Mulit-widget</em></u>&quot; to the sidebar where you wish to show the multi-widgets.</p>
+<p>
+	<strong><em>15Zine Social Media Icons:&nbsp;</em></strong>This widget allows you to add social media icons of popular social networks and link them to your own pages.&nbsp;</p>
+<p>
+	<strong><em>15Zine Top Reviews:&nbsp;</em></strong>This widget shows the reviews with best scores from a specific category or from all categories.&nbsp;You can also set the number of posts to show and only show reviews from a specific time: <em>All-time/Last Month/Last 7 Days/2013/2012/2011</em></p>
+</section>
+<section id="cubell_shortcodes">
+	<div class="page-header"><h3>15Zine Shortcodes</h3><hr class="notop"></div>
+<p>
+	15Zine comes with a couple of different shortcodes for you to use. To insert them into your posts/pages, use one of the eight new buttons located in your post-editing toolbar.</p>
+
+
+<p>
+	<em><strong>1. Buttons </strong></em></p>
+<p>
+	Adds a clickable button with the following options:</p>
+<p>
+	<em><u>Button URL</u></em>: The url that is opened when the button is clicked</p>
+<p>
+	<em><u>Button Text</u></em>: The text to show on the button</p>
+<p>
+	<em><u>Size</u></em>: Normal sized Button or Big Button</p>
+<p>
+	<em><u>Color</u></em>: White, Pink, Yellow, Green, Red, Grey, Brown, Black or Blue</p>
+<p>
+	<em><u>Alignment</u></em>: None or center</p>
+<p>
+	<em><u>Open In</u></em>: Same window or New window</p>
+<p>
+	<u><em>Rel</em></u>: Follow or No follow (&quot;<u><em>no follow</em></u>&quot; is recommended to be used for affiliate type of links - for SEO purposes)</p>
+<p>
+	<em><strong>2. Toggler</strong></em></p>
+<p>
+	Reveal hidden text when clicking on a title.</p>
+<p>
+	<em><u>Title</u></em>: Clickable text that reveals the <em>Hidden Text</em></p>
+<p>
+	<em><u>Hidden Text</u></em>: The text to be revealed when the title is clicked.</p>
+<p>
+	<strong><em>3. Alert Box</em></strong></p>
+<p>
+	<em><u>Alert Text</u></em>: Text that is shown in the alert</p>
+<p>
+	<em><u>Background Color</u></em>: The background color of the text</p>
+	<p>
+	<strong><em>4. Author Box</em></strong></p>
+<p>
+	<em><u>Author ID</u></em>: Enter ID of author you wish to show</p>
+<p>
+	<strong><em>5. Highlight Text</em></strong></p>
+<p>
+	<em><u>Background Color Hex Value</u></em>: The background color for the text, must be entered as a hexadecimal (example: #e1e1e1). If left blank, the background color will be the global color set in the theme options.</p>
+<p>
+	<em><u>Highlighted Text</u></em>: The text to go over the background color.</p>
+<p>
+	<strong><em>6. Tabs</em></strong></p>
+<p>
+	Clickable tabs. Enter the title + content of each tab.</p>
+<p>
+	<strong><em>7. Columns</em></strong></p>
+<p>
+	Split content into columns.</p>
+<p>
+	If you wish to insert two columns (50% width each) you must insert a column with the following settings &quot;One Half + First&quot; and another one that is &quot;One Half + Last&quot;. If you wish to insert four columns (25% width each) you need to insert &quot;One Quarter + first&quot; and then &quot;One Quarter + Middle&quot; and then &quot;One Quarter + Middle&quot; and lastly &quot;One Quarter + Last&quot;.</p>
+<p>
+	<b>8. Divider</b></p>
+<p>
+	Inserts a content divider with a title. To insert a divider all that is needed is to enter a title.</p>
+</section>
+<section id="rtl_version">
+	<div class="page-header"><h3>RTL version</h3><hr class="notop"></div>
+<p>
+    15Zine automatically detects if a site is installed in a RTL language. If it is, 15Zine will load the RTL CSS file. Simple!</p>
+<p>
+    To install Wordpress in your own language</p>
+</section>
+<section id="lightbox">
+	<div class="page-header"><h3>Lightbox</h3><hr class="notop"></div>
+<p>
+	15Zine comes with a lightbox built-in.&nbsp;</p>
+<p>
+	Whenever you insert an image into a post/page and set it to &quot;link to&quot; -&gt; &quot;Media File&quot;, it will automatically open the image in the lightbox when clicked.</p>
+<p>
+	The lightbox can be turned on/off in&nbsp;<strong><em>Appearance &rarr; Theme Options&nbsp;</em></strong><strong><em>&rarr;</em></strong><strong><em>&nbsp;Extras.</em></strong></p>
+</section>
+<section id="customposttype">
+	<div class="page-header"><h3>Custom Post Types</h3><hr class="notop"></div>
+<p>
+	15Zine is compatible with custom post types, which means that your custom posts will now also show the post meta boxes (featured image styles, reviews, color options, etc). If the custom post type has the category taxonomy enabled and the custom posts are assigned to categories, the posts will now appear in the blog styles and in the pagebuilder's modules too.</p>
+<p>You only need to do this to get this all to work:</p>
+
+<p>1- Go to <strong><em>Appearance &rarr; Theme Options&nbsp;</em></strong><strong><em>&rarr;</em></strong><strong><em>&nbsp;Custom Code</em></strong></p>
+<p>2- Write the names of your custom post types into the "Custom Post Type Names" input box and if you have more than one, separate them using a comma, example: books, movies</p>
+<p>Tip: To find out the custom post type name quickly, simply go to your WordPress backend and hover your mouse over the custom post type item in the menu, at the bottom of the browser you should see a URL ending in something like this: "edit.php?post_type=movies" and whatever is after the "=" is the name you need to enter in the input box, in this case you would enter "movies".</p>
+
+</section>
+<section id="disqus">
+	<div class="page-header"><h3>Disqus Integration</h3><hr class="notop"></div>
+<p>
+	15Zine is fully-compatible with Disqus Comments.&nbsp;</p>
+<p>
+	After following the instructions found in http://disqus.com/admin/wordpress/ you must do one final step:</p>
+
+<p>1- Go to <strong><em>Appearance &rarr; Theme Options&nbsp;</em></strong><strong><em>&rarr;</em></strong><strong><em>&nbsp;Custom Code</em></strong></p>
+<p>2- Add your forum shortname in the "Disqus Forum Shortname" box. This is to tell 15Zine to count the comments from Disqus.</p>
+</section>
+
+<section id="translation">
+	<div class="page-header"><h3>Translation</h3><hr class="notop"></div>
+<p>
+	15Zine comes with everything setup to easily translate it into any language.&nbsp;</p>
+<p>
+	English, French and Spanish are already prepared, but to translate into a different language:</p>
+
+<p>1- Go to the theme translation folder, which is located in "15zine/library/translation/"</p>
+<p>2- Make a copy of the file 'default.po' and rename the file to the locale of your language, example: Spanish would be 'es_ES.po'</p>
+<p>3- Open Poedit (can be downloaded for free from http://www.poedit.net/) and open the file you have created in it</p>
+<p>4- Translate all the strings and save your changes. After you save, you will have two files, example: Spanish would have 'es_ES.po' and 'es_ES.mo'</p>
+<p>5- Upload these files to "15zine/library/translation/"</p>
+<p>6- Make sure your WordPress config file (located in the root of your website "yoursite/wp-config.php") has the following line set to your locale: "define ('WPLANG', 'es_ES');"</p>
+</section>
+<section id="updating_theme">
+	<div class="page-header"><h3>Updating Theme</h3><hr class="notop"></div>
+<p>
+	<em><strong>Recommended Theme Update Method:</strong></em></p>
+<p>
+	When 15Zine is activated it recommends three plugins. One of them is called &quot;Envato Wordpress Toolkit&quot; which when enabled and setup, will automatically alert you on your Dashboard when a new version of the theme is available and allows you to install it with only a few clicks.</p>
+<p>
+	If you did not install the plugin when you first installed 15Zine, and wish to install it now, please follow these steps:</p>
+	<p>1- It is always recommended to create a backup of your site before doing anything</p>
+<p>
+	2- Go to&nbsp;<strong><em>Appearance &rarr; Install Plugins</em></strong></p>
+<p>
+	3- Hover over &quot;<em><u>Envato Wordpress Toolkit</u></em>&quot; and click on &quot;install plugin&quot;</p>
+<p>
+	4- Go to&nbsp;<strong><em>Plugins &rarr; Installed Plugins&nbsp;</em></strong>and activate &quot;<em><u>Envato Wordpress Toolkit</u></em>&quot;</p>
+<p>
+	A very good tutorial on how to use this plugin can be found at:&nbsp;<a href="http://wpmu.org/envato-wordpress-toolkit-a-themeforest-auto-updater/">http://wpmu.org/envato-wordpress-toolkit-a-themeforest-auto-updater/</a></p>
+	<p>
+	<strong>IMPORTANT:</strong> Once the theme is updated, you need to go to&nbsp;<strong><em>Appearance &rarr; Install Plugins</em></strong> and check the status of "15Zine Functionality" plugin, if it says "Not Updated", simply hover over the plugin name title and click "update". </p>
+<p>
+	&nbsp;</p>
+<p>
+	<em><u>All your settings should remain intact after updating the theme (menu settings, theme option settings, etc).</u></em></p>
+<p>
+	&nbsp;</p>
+<p>
+	<em><strong>Alternative Theme Update Method:</strong></em></p>
+<p>
+	You can also update the theme manually by going to Themeforest.net, logging into your account and downloading the latest 15Zine version.&nbsp;</p>
+<p> For users who <strong>are not</strong> using a Child Theme:</p>
+<p> 1- It is always recommended to create a backup of your site before doing anything</p>
+<p> 2- Deactivate your current 15Zine version in the Theme section (This can be done by activating any other theme)</p>
+<p> 3- Delete the Old 15Zine theme from your website</p>
+<p> 4- Upload the new version of 15Zine as normal and activate it</p>
+<p> For users who <strong>are</strong> using a Child Theme:</p>
+<p> 1- It is always recommended to create a backup of your site before doing anything</p>
+<p> 2- Delete the Old Parent 15Zine theme from your website</p>
+<p> 3- Upload the new Parent version of 15Zine and keep the child theme active</p>
+<p>
+	<strong>IMPORTANT:</strong> Once the theme is updated, you need to go to&nbsp;<strong><em>Appearance &rarr; Install Plugins</em></strong> and check the status of "15Zine Functionality" plugin, if it says "Not Updated", simply hover over the plugin name title and click "update". </p>
+<p>
+	&nbsp;</p>
+<p>
+	<em><u>All your settings should remain intact&nbsp;</u></em><em><u>after updating the theme&nbsp;</u></em><em><u>(menu settings, theme option settings, etc).</u></em></p>
+</section>
+<section id="demo_content">
+	<div class="page-header"><h3>Importing Demo Content</h3><hr class="notop"></div>
+
+<p>When you download the theme from Themeforest, the file you get includes multiple things, one of them is a file called: cubelldemo.wordpress.2013-10-16.xml. This XML file contains all the data from the v1.0 demo (Except the licensed images, which are replaced by placeholders), to import it:
+</p>
+<p>1- After logging into your WordPress backend go to Tools -> Import</p>
+<p>2- Select the WordPress option (Install plugin that popups if it isn't installed)</p>
+<p>3- Select the XML file from the file you downloaded and run the import process</p>
+<p>Once the importing is complete:</p>
+
+<p>- Go to “Settings -> Reading” and set the front page to display a “front page” then select one of the demo homepages from the list (the demo homepage uses page "Demo Homepage")</p>
+
+<p>- Go to Appearance -> Menu and set “Main Nav” menu to the “Main Navigation Menu” theme location</p>
+
+<p>- Go to the "theme options" and upload/select your logo</p>
+
+<p>- Go to the "widgets" section and add widgets to the "footer 1", "footer 2" and "footer 3"</p>
+
+<p>- In the "widgets" section add widgets to "Section B Sidebar (Demo Homepage page)" - This is the widget area that will be used next to your modules from section B.</p>
+<p>
+And that is pretty much it, shouldn't take more than a few minutes.
+</p>
+</section>
+<section id="support">
+	<div class="page-header"><h3>Support</h3><hr class="notop"></div>
+<p>
+	If you are having issues with 15Zine, please ensure that the solution isn&#39;t already covered in this documentation.</p>
+<p>
+	If you read the documentation and can not find the answer to your issue, please try searching in the Themeforest comments section or through the many tickets already answered in the support system. You can open a ticket with as much information about the problem as possible at:</p>
+<p>
+	<a href="http://support.cubellthemes.com">http://support.cubellthemes.com</a></p>
+<p>
+	Information that you should include in your ticket:</p>
+<p>
+	- Did you disable all the plugins to test if the problem is being caused by a plugin?</p>
+<p>
+	- Wordpress Version?</p>
+<p>
+	- 15Zine Theme Version?</p>
+<p>
+	- Website URL with problem</p>
+<p>
+	&nbsp;</p>
+<p>
+	We will try to fix all theme-related bugs that are reported, but please remember, we do not provide theme customizations services (not even paid), however, if you open a ticket in the support system explaining the customization you are trying to achieve, depending on free-time, we may be able to give you basic advise on the best way to achieve it.</p>
+</section>
+
+	</div>
+</body>
+</html>

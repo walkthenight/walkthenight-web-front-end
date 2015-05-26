@@ -1,0 +1,381 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 15Zine 1.0\n"
+"POT-Creation-Date: 2015-03-25 11:59-0000\n"
+"PO-Revision-Date: 2015-03-25 11:59-0000\n"
+"Last-Translator: \n"
+"Language-Team: Cubell Themes\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;gettext;gettext_noop;_n:1,2\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPathExcluded-0: ../library/admin\n"
+"X-Poedit-SearchPathExcluded-1: ../option-tree\n"
+"X-Poedit-SearchPathExcluded-2: ../plugins/login-with-ajax\n"
+
+#: ../404.php:10
+msgid "Page not found... Oops!"
+msgstr ""
+
+#: ../404.php:11
+msgid "Page not found. Please try using the search box below."
+msgstr ""
+
+#: ../bbpress/form-search.php:14
+msgid "Search for:"
+msgstr ""
+
+#: ../bbpress/form-search.php:16 ../searchform.php:3
+msgid "Search.."
+msgstr ""
+
+#: ../comments.php:15
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: ../comments.php:27
+msgid "No Responses"
+msgstr ""
+
+#: ../comments.php:27
+msgid "One Response"
+msgstr ""
+
+#: ../comments.php:27
+msgid "% Response"
+msgid_plural "% Responses"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../comments.php:53
+msgid "Leave a Reply"
+msgstr ""
+
+#: ../comments.php:54
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: ../comments.php:55
+msgid "Cancel Reply"
+msgstr ""
+
+#: ../comments.php:56
+msgid "Post Comment"
+msgstr ""
+
+#: ../comments.php:58
+msgid "Your email address will not be published."
+msgstr ""
+
+#: ../comments.php:59
+msgid "Comment"
+msgstr ""
+
+#: ../comments.php:65
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: ../comments.php:71
+#, php-format
+msgid ""
+"Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
+"this account\">Log out?</a>"
+msgstr ""
+
+#: ../comments.php:81
+msgid "Name"
+msgstr ""
+
+#: ../comments.php:87 ../library/core.php:3834 ../library/core.php:3888
+msgid "Email"
+msgstr ""
+
+#: ../comments.php:94 ../library/core.php:3835 ../library/core.php:3889
+msgid "Website"
+msgstr ""
+
+#: ../functions.php:288
+msgid ""
+"15Zine requires Cubell Themes Functionality 4.0, please delete your existing "
+"installation of Cubell Themes Functionality plugin and install the latest "
+"version in Appearance -> Install Plugins."
+msgstr ""
+
+#: ../library/core.php:127
+msgid "Log in / Join"
+msgstr ""
+
+#: ../library/core.php:133
+msgid "Search"
+msgstr ""
+
+#: ../library/core.php:366
+msgid "Trending"
+msgstr ""
+
+#: ../library/core.php:373
+msgid "Now"
+msgstr ""
+
+#: ../library/core.php:373
+msgid "Week"
+msgstr ""
+
+#: ../library/core.php:373
+msgid "Month"
+msgstr ""
+
+#: ../library/core.php:451 ../library/core.php:516
+msgid "Not enough data yet, please check again later."
+msgstr ""
+
+#: ../library/core.php:456 ../library/core.php:522
+msgid ""
+"You need to install Jetpack plugin and enable the \"Stats\" module to be "
+"able to use this."
+msgstr ""
+
+#: ../library/core.php:550
+#, php-format
+msgid "Found %d result for:"
+msgid_plural "Found %d results for:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../library/core.php:573
+msgid "See all results"
+msgstr ""
+
+#: ../library/core.php:576
+msgid "No results found for:"
+msgstr ""
+
+#: ../library/core.php:1250 ../library/core.php:1402 ../library/core.php:2323
+#: ../library/core.php:2327 ../library/core.php:2328 ../library/core.php:2394
+#: ../library/core.php:2398 ../library/core.php:2400 ../library/core.php:2406
+#: ../library/core.php:2412 ../library/core.php:2418
+#, php-format
+msgid "View all posts in %s"
+msgstr ""
+
+#: ../library/core.php:1410
+msgid "0 Comments"
+msgstr ""
+
+#: ../library/core.php:1516
+#, php-format
+msgid "%s (Invalid)"
+msgstr ""
+
+#: ../library/core.php:1520
+#, php-format
+msgid "%s (Pending)"
+msgstr ""
+
+#: ../library/core.php:1565
+msgid "Edit Menu Item"
+msgstr ""
+
+#: ../library/core.php:1574
+msgid "URL"
+msgstr ""
+
+#: ../library/core.php:1581
+msgid "Navigation Label"
+msgstr ""
+
+#: ../library/core.php:1587
+msgid "Title Attribute"
+msgstr ""
+
+#: ../library/core.php:1594
+msgid "Open link in a new window/tab"
+msgstr ""
+
+#: ../library/core.php:1599
+msgid "CSS Classes (optional)"
+msgstr ""
+
+#: ../library/core.php:1605
+msgid "Link Relationship (XFN)"
+msgstr ""
+
+#: ../library/core.php:1621
+msgid "Description"
+msgstr ""
+
+#: ../library/core.php:1623
+msgid ""
+"The description will be displayed in the menu if the current theme supports "
+"it. "
+msgstr ""
+
+#: ../library/core.php:1629
+msgid "Move"
+msgstr ""
+
+#: ../library/core.php:1630
+msgid "Up one"
+msgstr ""
+
+#: ../library/core.php:1631
+msgid "Down one"
+msgstr ""
+
+#: ../library/core.php:1634
+msgid "To the top"
+msgstr ""
+
+#: ../library/core.php:1641
+#, php-format
+msgid "Original: %s"
+msgstr ""
+
+#: ../library/core.php:1654
+msgid "Remove"
+msgstr ""
+
+#: ../library/core.php:1655
+msgid "Cancel"
+msgstr ""
+
+#: ../library/core.php:1842
+msgid "See all"
+msgstr ""
+
+#: ../library/core.php:2131
+msgid "Read more"
+msgstr ""
+
+#: ../library/core.php:2147
+msgid "No more articles"
+msgstr ""
+
+#: ../library/core.php:2148
+msgid "Load More"
+msgstr ""
+
+#: ../library/core.php:2314
+msgid "Home"
+msgstr ""
+
+#: ../library/core.php:2346 ../library/core.php:2348
+msgid "Groups"
+msgstr ""
+
+#: ../library/core.php:2364 ../library/core.php:2368
+msgid "Members"
+msgstr ""
+
+#: ../library/core.php:2376
+msgid "Messages"
+msgstr ""
+
+#: ../library/core.php:2381
+msgid "Register"
+msgstr ""
+
+#: ../library/core.php:2505
+msgid "Share On"
+msgstr ""
+
+#: ../library/core.php:2575
+msgid "Next Article"
+msgstr ""
+
+#: ../library/core.php:2580
+msgid "No Newer Articles"
+msgstr ""
+
+#: ../library/core.php:2590
+msgid "Previous Article"
+msgstr ""
+
+#: ../library/core.php:2595
+msgid "No Older Articles"
+msgstr ""
+
+#: ../library/core.php:2664
+msgid "Related Posts"
+msgstr ""
+
+#: ../library/core.php:2716
+msgid "(Edit)"
+msgstr ""
+
+#: ../library/core.php:2719
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ../library/core.php:3635
+msgid "Overall Score"
+msgstr ""
+
+#: ../library/core.php:3723 ../library/core.php:3733
+msgid "You have already rated"
+msgstr ""
+
+#: ../library/core.php:3727 ../library/core.php:4552
+msgid "Vote"
+msgstr ""
+
+#: ../library/core.php:3729 ../library/core.php:4554
+msgid "Votes"
+msgstr ""
+
+#: ../library/core.php:3732
+msgid "Leave rating"
+msgstr ""
+
+#: ../library/core.php:3734
+msgid "Reader Rating"
+msgstr ""
+
+#: ../library/widgets/cb-google-follow-widget.php:87
+#: ../library/widgets/cb-recent-posts-slider-widget.php:121
+#: ../library/widgets/cb-recent-posts-widget.php:116
+#: ../library/widgets/cb-reviews-widget.php:182
+#: ../library/widgets/cb-single-image-widget.php:82
+#: ../library/widgets/cb-widget-social-media.php:98
+msgid "Title:"
+msgstr ""
+
+#: ../library/widgets/cb-popular-posts-widget.php:116
+msgid "Comments"
+msgstr ""
+
+#: ../library/widgets/cb-popular-posts-widget.php:145
+msgid "Views"
+msgstr ""
+
+#: ../library/widgets/cb-recent-posts-slider-widget.php:124
+#: ../library/widgets/cb-recent-posts-widget.php:119
+msgid "Number of posts to show:"
+msgstr ""
+
+#: ../library/widgets/cb-reviews-widget.php:197
+msgid "Number of reviews to show:"
+msgstr ""
+
+#: ../page.php:60
+msgid "Tags:"
+msgstr ""
+
+#: ../search.php:10
+msgid "Search Results for"
+msgstr ""
+
+#: ../search.php:27
+msgid "Sorry, nothing found."
+msgstr ""
+
+#: ../search.php:28
+msgid "Please try searching again, but with different keywords."
+msgstr ""
