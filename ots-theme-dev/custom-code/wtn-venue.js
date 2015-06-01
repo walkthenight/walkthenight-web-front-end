@@ -1,11 +1,21 @@
 $j(function() {
 	$j.getJSON('http://alpha.walkthenight.com/api/venues/' + WTN.venueId, function(data) {
-		console.log(data);
+		console.log('venue:',data);
 
 		WTN.populateSocialLinks(data);
 		WTN.populateVenueInfo(data);
 		WTN.populateMap(data);
+	});
+
+	$j.getJSON('http://alpha.walkthenight.com/api/venues/' + WTN.venueId + '/events', function(data) {
+		console.log('events: ',data);
+
 		WTN.populateEventsList(data);
+	});
+
+	$j.getJSON('http://alpha.walkthenight.com/api/venues/' + WTN.venueId + '/photos', function(data) {
+		console.log('photos: ',data);
+
 		WTN.populatePhotos(data);
 	});
 
@@ -77,7 +87,19 @@ $j(function() {
 
 	};
 
-	WTN.populatePhotos = function(data) {
-
+	WTN.populatePhotos = function(data) {console.log(data.length);
+		if (data.length > 0) {
+			$j.each(data, function(i, photoUrl) {
+				$j('.wtn-photos-img-proto')
+					.clone()
+	    				.addClass('wtn-photos-img')
+	    				.removeClass('wtn-photos-img-proto')
+    					.find('img')
+    						.attr('src', photoUrl)
+    						.end()
+    					.appendTo('.wtn-photos')
+    					.removeClass('hidden');
+			});
+		}
 	};
 });
