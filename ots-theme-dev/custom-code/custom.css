@@ -62,3 +62,8 @@ body {
 .cb-body-light h2, .cb-body-light h2 b, .cb-body-light h2 strong {
     font-weight: 300;   
 }
+
+#ads-125-2 ul li p, #ads-125-2 ul li {
+    width: 100%;
+    margin: 0;
+}
