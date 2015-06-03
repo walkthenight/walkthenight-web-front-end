@@ -1,4 +1,10 @@
 $j(function() {
+	(function populateEventsHeader() {
+		var venueName = $j('h1.cb-entry-title').html();
+
+		$j('.wtn-events-header span').html(venueName);
+	})();
+	
 	$j.getJSON('http://alpha.walkthenight.com/api/venues/' + WTN.venueId, function(data) {
 		console.log('venue:',data);
 
@@ -14,8 +20,6 @@ $j(function() {
 	});
 
 	$j.getJSON('http://alpha.walkthenight.com/api/venues/' + WTN.venueId + '/photos', function(data) {
-		console.log('photos: ',data);
-
 		WTN.populatePhotos(data);
 	});
 
@@ -84,10 +88,83 @@ $j(function() {
 	};
 
 	WTN.populateEventsList = function(data) {
+		if (data.length > 0) {
+			$j.each(data, function(i, thisEvent) {
+				var localTimeOffset = moment().utcOffset(),
+					eventTimeOffset = WTN.timeOffset,
+					displayTimeOffset = eventTimeOffset - localTimeOffset,
+					dateAndTimeFormat = 'dddd, MMMM Do YYYY,<br />h:mm a',
+					dateOnlyFormat = 'dddd, MMMM Do YYYY',
+					timeOnlyFormat = 'h:mm a',
 
+					startTime = moment(thisEvent.startTime),
+					startTimeCorrected = moment(thisEvent.startTime).add(displayTimeOffset, 'minutes'),
+					startTimeHasHours = startTime.hour(),
+					startTimeStr,
+					endTime = moment(thisEvent.endTime),
+					endTimeCorrected = endTime.add(displayTimeOffset, 'minutes'),
+					endTimeStr = '',
+
+					endTimeIsSameDateAsStartTime = moment(startTimeCorrected).isSame(endTimeCorrected, 'day'),
+					endTimeIsBefore5Am = (moment(endTimeCorrected).hour() < 5),
+					
+					$newEventRow;
+
+					if (startTimeHasHours) {
+						startTimeStr = startTimeCorrected.format(dateAndTimeFormat);
+					}
+					else {
+						startTimeStr = startTimeCorrected.format(dateOnlyFormat);
+					}
+
+					if (endTime.isValid()) {
+						if (endTimeIsSameDateAsStartTime || endTimeIsBefore5Am) {
+							endTimeStr = ' to ' + endTimeCorrected.format(timeOnlyFormat);
+						}
+						else {
+							endTimeStr = '<br />to<br />' + endTimeCorrected.format(dateAndTimeFormat);
+						}
+					}
+
+					$newEventRow = $j('.wtn-events-event-proto')
+										.clone()
+						    				.addClass('wtn-events-event')
+						    				.removeClass('wtn-events-event-proto')
+					    					.find('.wtn-events-event-name')
+					    						.html(thisEvent.name)
+					    						.end()
+					    					.find('.wtn-events-event-date')
+					    						.html(startTimeStr + endTimeStr)
+					    						.end()
+					    					.find('.wtn-events-event-price span')
+						    					.html(thisEvent.price)
+						    					.end();
+						    					
+				if (thisEvent.url) {
+					$newEventRow
+    					.find('.wtn-events-event-name')
+    						.wrapInner('a')
+    						.find('a')
+	    						.attr('src', thisEvent.url)
+	    						.end()
+	    					.end()
+    					.find('.wtn-events-event-date')
+    						.wrapInner('a')
+    						.find('a')
+	    						.attr('src', thisEvent.url);
+				}
+
+				$newEventRow
+					.appendTo('.wtn-events')
+					.removeClass('hidden');
+			});
+		}
+		else {
+			$j('.wtn-events-none').removeClass('hidden');
+		}
 	};
 
-	WTN.populatePhotos = function(data) {console.log(data.length);
+	WTN.populatePhotos = function(data) {
 		if (data.length > 0) {
 			$j.each(data, function(i, photoUrl) {
 				$j('.wtn-photos-img-proto')
