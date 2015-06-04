@@ -3,8 +3,13 @@ var $j = jQuery.noConflict();
 
 // Global brand object
 var WTN = WTN || {
+
 	// minutes in timezone offset - change according to location of WTN install
 	timeOffset: -420,
+	
+	$newHoursRow: {},
+	eventProps: {},
+	$newEventRow: {},
 
 	parseVenueInfoData: function() {
 		$j.getJSON('http://alpha.walkthenight.com/api/venues/' + this.venueId, function(data) {
@@ -120,14 +125,20 @@ var WTN = WTN || {
 	},
 
 	populateMap: function(data) {
-		var mapOptions = {
-				center: {
-					lat: data.latitude,
-					lng: data.longitude
-				},
-		        zoom: 8
+		var venueCoords = new google.maps.LatLng(data.latitude, data.longitude),
+
+			mapOptions = {
+				center: venueCoords,
+		        zoom: 12
 			},
-			map = new google.maps.Map($j('.wtn-map').get(0), mapOptions);
+
+			map = new google.maps.Map($j('.wtn-map').get(0), mapOptions),
+
+			marker = new google.maps.Marker({
+				position: venueCoords,
+				map: map,
+				title: data.name
+			});
 	},
 
 	populateEventsList: function(data) {
