@@ -13,8 +13,6 @@ var WTN = WTN || {
 
 	parseVenueInfoData: function() {
 		$j.getJSON('http://alpha.walkthenight.com/api/venues/' + this.venueId, function(data) {
-			console.log('venue:',data);
-
 			WTN.populateSocialLinks(data);
 			WTN.populateVenueInfo(data);
 			WTN.populateMap(data);
@@ -91,30 +89,26 @@ var WTN = WTN || {
 				    			.clone()
 				    				.addClass('wtn-venue-info-hours-entry')
 				    				.removeClass('wtn-venue-info-hours-proto hidden');
-
-		$j.each(hoursEntry, function(key, value) {
-			WTN.parseVenueHoursRow(key, value);
-		});
+		
+		WTN.addNewHoursCell(hoursEntry.openingDay);
+		WTN.formatVenueHoursTime(hoursEntry.openingTime);
+		WTN.formatVenueHoursTime(hoursEntry.closingTime);
 		
 		WTN.$newHoursRow.appendTo('.wtn-venue-info-hours table tbody');
 	},
 
-	parseVenueHoursRow: function(key, value) {
+	formatVenueHoursTime: function(value) {
 		var timeParts = value.split(':'),
 			timeObj = moment({
 				hour: timeParts[0],
 				minute: timeParts[1]
 			}),
-			displayValue = value;
-
-		if (timeObj.isValid()) {
-			displayValue = timeObj.format('h:mm a');
-		}
+			displayValue = (timeObj.isValid()) ? timeObj.format('h:mm a') : '';
 		
-		WTN.addNewHoursRow(displayValue);
+		WTN.addNewHoursCell(displayValue);
 	},
 
-	addNewHoursRow: function(displayValue) {
+	addNewHoursCell: function(displayValue) {
 		WTN.$newHoursRow
 			.find('.wtn-venue-info-hours-data-proto')
 				.clone()
