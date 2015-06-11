@@ -5,44 +5,42 @@ var $j = jQuery.noConflict();
 var WTN = WTN || {
 
 	// minutes in timezone offset - change according to location of WTN city
-	timeOffset: -420,
+	timeOffset: 0,
 	
+	apiServerPath: '',
 	apiDataTypePath: '',
 	apiDataTypeId: '',
-	$newHoursRow: {},
+	venueData: {},
 	eventProps: {},
+	$newHoursRow: {},
 	$newEventRow: {},
+	mapZoomLevel: 14,
 
-	parseInfoData: function() {
-		$j.getJSON('http://alpha.walkthenight.com/api/' + WTN.apiDataTypePath + '/' + WTN.apiDataTypeId, function(data) {
-			WTN.populateSocialLinks(data);
-			WTN.populateMap(data);
-
-			if (WTN.apiDataTypePath === 'venues') {
-				WTN.populateVenueInfo(data);
-			}
+	getInfoData: function() {
+		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId, function(data) {
+			WTN.venueData = data;
 		});
 	},
 
 	parseEventsData: function() {
-		$j.getJSON('http://alpha.walkthenight.com/api/' + WTN.apiDataTypePath + '/' + WTN.apiDataTypeId + '/events', function(data) {
+		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId + '/events', function(data) {
 			WTN.populateEventsList(data);
 		});
 	},
 
 	parsePhotosData: function() {
-		$j.getJSON('http://alpha.walkthenight.com/api/' + WTN.apiDataTypePath + '/' + WTN.apiDataTypeId + '/photos', function(data) {
+		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId + '/photos', function(data) {
 			WTN.populatePhotos(data);
 		});
 	},
 
-	populateSocialLinks: function(data) {
+	populateSocialLinks: function() {
 		var socialLinks = {
-			email: data.email,
-			facebook: data.facebookUrl,
-			instagram: data.instagramHandle,
-			twitter: data.twitterHandle,
-			web: data.website
+			email: WTN.venueData.email,
+			facebook: WTN.venueData.facebookUrl,
+			instagram: WTN.venueData.instagramHandle,
+			twitter: WTN.venueData.twitterHandle,
+			web: WTN.venueData.website
 		};
 
 		$j.each(socialLinks, function(key, value) {
@@ -58,11 +56,12 @@ var WTN = WTN || {
 		});
 	},
 
-	populateVenueInfo: function(data) {
+	populateVenueInfo: function() {
 		var venueInfo = {
-			address: data.streetAddress,
-			phone: data.phoneNumber,
-			hours: data.hours
+			name: WTN.venueData.name,
+			address: WTN.venueData.streetAddress,
+			phone: WTN.venueData.phoneNumber,
+			hours: WTN.venueData.hours
 		};
 
 		$j.each(venueInfo, function(param, value) {
@@ -123,12 +122,12 @@ var WTN = WTN || {
 					.appendTo(WTN.$newHoursRow);
 	},
 
-	populateMap: function(data) {
-		var venueCoords = new google.maps.LatLng(data.latitude, data.longitude),
+	populateMap: function() {
+		var venueCoords = new google.maps.LatLng(WTN.venueData.latitude, WTN.venueData.longitude),
 
 			mapOptions = {
 				center: venueCoords,
-		        zoom: 12
+		        zoom: WTN.mapZoomLevel
 			},
 
 			map = new google.maps.Map($j('.wtn-map').get(0), mapOptions),
@@ -136,7 +135,7 @@ var WTN = WTN || {
 			marker = new google.maps.Marker({
 				position: venueCoords,
 				map: map,
-				title: data.name
+				title: WTN.venueData.name
 			});
 	},
 
@@ -209,12 +208,47 @@ var WTN = WTN || {
 			    					.find('.wtn-events-event-name')
 			    						.html(thisEvent.name)
 			    						.end()
+			    					.find('.wtn-events-event-location')
+			    						.each(function() {
+			    							var $locationCell = $j(this);
+
+			    							if (thisEvent.place && WTN.apiDataTypePath === 'series/') {
+			    								if (thisEvent.place.name) {
+				    								$locationCell
+				    									.html(thisEvent.place.name)
+				    									.removeClass('hidden');
+				    							}
+				    							if (thisEvent.place.id) {
+				    								WTN.venueId = thisEvent.place.id;
+				    								
+				    								WTN.getInfoData();
+
+				    								$locationCell
+				    									.wrap('a')
+				    									.find('a')
+				    										.attr('href', '[VENUE PAGE URL GOES HERE]');
+				    							}
+			    							}
+			    						})
+			    						.end()
 			    					.find('.wtn-events-event-date')
 			    						.html(WTN.eventProps.startTimeStr + WTN.eventProps.endTimeStr)
 			    						.end()
 			    					.find('.wtn-events-event-price span')
+			    						.each(function() {
+			    							var $locationCell = $j(this);
+
+			    							if (thisEvent.place) {
+			    								if (thisEvent.place.name) {
+				    								$locationCell
+				    									.find('span')
+					    									.html(thisEvent.place.name)
+					    									.removeClass('hidden');
+				    							}
+			    							}
+			    						})
 				    					.html(thisEvent.price)
-				    					.end();
+				    					.end();	// end() necessary as part of the statement setting the value of WTN.$newEventRow
 	},
 
 	wrapEventItemsInAnchors: function(thisEvent) {
@@ -223,13 +257,13 @@ var WTN = WTN || {
 				.find('.wtn-events-event-name')
 					.wrapInner('a')
 					.find('a')
-						.attr('src', thisEvent.url)
+						.attr('href', thisEvent.url)
 						.end()
 					.end()
 				.find('.wtn-events-event-date')
 					.wrapInner('a')
 					.find('a')
-						.attr('src', thisEvent.url);
+						.attr('href', thisEvent.url);
 		}
 	},
 

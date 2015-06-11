@@ -6,10 +6,14 @@ $j(function() {
 		$j('.wtn-events-header span').html(venueName);
 	})();
 
-	WTN.apiDataTypePath = 'venues';
+	WTN.apiDataTypePath = 'venues/';
 	WTN.apiDataTypeId = WTN.venueId;
 
-	WTN.parseInfoData();
+	WTN.getInfoData();
+	WTN.populateSocialLinks();
+	WTN.populateMap();
+	WTN.populateVenueInfo();
+
 	WTN.parseEventsData();
 	WTN.parsePhotosData();
 
