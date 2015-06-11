@@ -4,29 +4,34 @@ var $j = jQuery.noConflict();
 // Global brand object
 var WTN = WTN || {
 
-	// minutes in timezone offset - change according to location of WTN install
+	// minutes in timezone offset - change according to location of WTN city
 	timeOffset: -420,
 	
+	apiDataTypePath: '',
+	apiDataTypeId: '',
 	$newHoursRow: {},
 	eventProps: {},
 	$newEventRow: {},
 
-	parseVenueInfoData: function() {
-		$j.getJSON('http://alpha.walkthenight.com/api/venues/' + this.venueId, function(data) {
+	parseInfoData: function() {
+		$j.getJSON('http://alpha.walkthenight.com/api/' + WTN.apiDataTypePath + '/' + WTN.apiDataTypeId, function(data) {
 			WTN.populateSocialLinks(data);
-			WTN.populateVenueInfo(data);
 			WTN.populateMap(data);
+
+			if (WTN.apiDataTypePath === 'venues') {
+				WTN.populateVenueInfo(data);
+			}
 		});
 	},
 
 	parseEventsData: function() {
-		$j.getJSON('http://alpha.walkthenight.com/api/venues/' + this.venueId + '/events', function(data) {
+		$j.getJSON('http://alpha.walkthenight.com/api/' + WTN.apiDataTypePath + '/' + WTN.apiDataTypeId + '/events', function(data) {
 			WTN.populateEventsList(data);
 		});
 	},
 
 	parsePhotosData: function() {
-		$j.getJSON('http://alpha.walkthenight.com/api/venues/' + this.venueId + '/photos', function(data) {
+		$j.getJSON('http://alpha.walkthenight.com/api/' + WTN.apiDataTypePath + '/' + WTN.apiDataTypeId + '/photos', function(data) {
 			WTN.populatePhotos(data);
 		});
 	},
@@ -152,7 +157,7 @@ var WTN = WTN || {
 		WTN.removeEventDateFromEarlyMorningEndTime();
 		WTN.createNewEventRow(thisEvent);
 		WTN.wrapEventItemsInAnchors(thisEvent);
-		WTN.apendNewEventRow();
+		WTN.appendNewEventRow();
 	},
 
 	createEventPropsObj: function(thisEvent) {
@@ -228,7 +233,7 @@ var WTN = WTN || {
 		}
 	},
 
-	apendNewEventRow: function() {
+	appendNewEventRow: function() {
 		WTN.$newEventRow
 			.appendTo('.wtn-events')
 			.removeClass('hidden');
