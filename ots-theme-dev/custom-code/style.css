@@ -49,34 +49,38 @@ body.page .cb-tags {
         display: block;
     }
 
-.wtn-venue-info ul {
-    margin-top: 0 !important;
-    list-style: none !important;
-    line-height: 1.5em;
-    font-size: 15px;
+.wtn-venue-info-container {
+    padding-right: 20px;
 }
-	.wtn-venue-info li {
-		margin-bottom: 15px;
-	}
-        .wtn-venue-info-name {
-            font-weight: bold;
-        }
-        .wtn-venue-info .wtn-venue-info-hours th {
-            padding-top: 5px;
-            padding-bottom: 3px;
-            text-align: center;
-        }
-        .wtn-venue-info .wtn-venue-info-hours-entry td {
-            padding-top: 0;
-            padding-bottom: 0;
-            border: 0;
-            text-align: center;
-            white-space: nowrap;
-        }
-            .wtn-venue-info .wtn-venue-info-hours-entry:nth-of-type(3) td {
-                padding-top: 5px;
+    .wtn-venue-info ul {
+        margin-top: 0 !important;
+        list-style: none !important;
+        line-height: 1.5em;
+        font-size: 15px;
+    }
+    	.wtn-venue-info li {
+    		margin-bottom: 15px;
+    	}
+            .wtn-venue-info-name {
+                font-weight: bold;
             }
+            .wtn-venue-info .wtn-venue-info-hours th {
+                padding-top: 5px;
+                padding-bottom: 3px;
+                text-align: center;
+            }
+            .wtn-venue-info .wtn-venue-info-hours-entry td {
+                padding-top: 0;
+                padding-bottom: 0;
+                border: 0;
+                text-align: center;
+                white-space: nowrap;
+            }
+                .wtn-venue-info .wtn-venue-info-hours-entry:nth-of-type(3) td {
+                    padding-top: 5px;
+                }
 
+.wtn-map-container,
 .wtn-map {
     height: 273px;
 }

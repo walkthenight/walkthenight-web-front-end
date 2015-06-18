@@ -147,6 +147,11 @@ var WTN = WTN || {
 	},
 
 	populateMap: function() {
+		if (!WTN.venueData.latitude || !WTN.venueData.longitude) {
+			WTN.hideLoaderIcon('.wtn-map-container');
+			return;
+		}
+
 		var venueCoords = new google.maps.LatLng(WTN.venueData.latitude, WTN.venueData.longitude),
 
 			mapOptions = {
@@ -161,6 +166,8 @@ var WTN = WTN || {
 				map: map,
 				title: WTN.venueData.name
 			});
+
+		WTN.hideLoaderIcon('.wtn-map-container');
 	},
 
 	populateEventsList: function(data) {
