@@ -23,19 +23,33 @@ body.page .cb-tags {
     background-color: #ec187c;
 }
 
-.wtn-social {
-    list-style: none !important;
-    font-size: 16px;
+.loader {
+    height: 100%;
+    text-align: center;
+    opacity: 0.33;
 }
-    .wtn-social li {
-        display: inline-block;
-        margin-right: 15px;
+    .loader img {
+        display: block;
+        max-height: 100%;
+        margin: 0 auto;
     }
+
+.wtn-social {
+    height: 20px;
+}
+    .wtn-social ul {
+        list-style: none !important;
+        font-size: 16px;
+    }
+        .wtn-social li {
+            display: inline-block;
+            margin-right: 15px;
+        }
     .wtn-social img {
         display: block;
     }
 
-.wtn-venue-info {
+.wtn-venue-info ul {
     margin-top: 0 !important;
     list-style: none !important;
     line-height: 1.5em;
@@ -80,7 +94,7 @@ body.page .cb-tags {
         font-weight: bold;
     }
 
-.wtn-events {
+.wtn-events table {
     font-size: 16px;
 }
     .wtn-events-header,
@@ -93,7 +107,7 @@ body.page .cb-tags {
     }
 
 
-.wtn-photos {
+.wtn-photos ul {
     list-style: none !important;
 }
     .wtn-photos-img {

@@ -19,7 +19,7 @@ var WTN = WTN || {
 	mapZoomLevel: 14,
 
 	getInfoData: function(callbacks) {
-		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId, function(data) {console.log(data);
+		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId, function(data) {
 			WTN.venueData = data;
 
 			callbacks.call();
@@ -58,6 +58,14 @@ var WTN = WTN || {
 					.end()
 				.removeClass('hidden');
 		});
+
+		WTN.hideLoaderIcon('.wtn-social');
+	},
+
+	hideLoaderIcon: function(container) {
+		$j(container)
+			.find('.loader')
+				.addClass('hidden');
 	},
 
 	populateVenueInfo: function() {
@@ -75,6 +83,8 @@ var WTN = WTN || {
 		    	
 	    	WTN.parseVenueParams(param, value);
 		});
+
+		WTN.hideLoaderIcon('.wtn-venue-info');
 	},
 
 	parseVenueParams: function(param, value) {
@@ -171,6 +181,7 @@ var WTN = WTN || {
 		WTN.createNewEventRow(thisEvent);
 		WTN.wrapEventItemsInAnchors(thisEvent);
 		WTN.appendNewEventRow();
+		WTN.hideLoaderIcon('.wtn-events');
 	},
 
 	createEventPropsObj: function(thisEvent) {
@@ -283,12 +294,13 @@ var WTN = WTN || {
 
 	appendNewEventRow: function() {
 		WTN.$newEventRow
-			.appendTo('.wtn-events')
+			.appendTo('.wtn-events table')
 			.removeClass('hidden');
 	},
 
 	populatePhotos: function(data) {
 		if (data.length < 1) {
+			WTN.hideLoaderIcon('.wtn-photos');
 			return;
 		}
 
@@ -300,8 +312,10 @@ var WTN = WTN || {
 					.find('img')
 						.attr('src', photoUrl)
 						.end()
-					.appendTo('.wtn-photos')
+					.appendTo('.wtn-photos ul')
 					.removeClass('hidden');
 		});
+
+		WTN.hideLoaderIcon('.wtn-photos');
 	}
 };
