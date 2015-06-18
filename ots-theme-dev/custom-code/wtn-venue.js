@@ -9,10 +9,11 @@ $j(function() {
 	WTN.apiDataTypePath = 'venues/';
 	WTN.apiDataTypeId = WTN.venueId;
 
-	WTN.getInfoData();
-	WTN.populateSocialLinks();
-	WTN.populateMap();
-	WTN.populateVenueInfo();
+	WTN.getInfoData(function() {
+		WTN.populateSocialLinks();
+		WTN.populateVenueInfo();
+		WTN.populateMap();
+	});
 
 	WTN.parseEventsData();
 	WTN.parsePhotosData();

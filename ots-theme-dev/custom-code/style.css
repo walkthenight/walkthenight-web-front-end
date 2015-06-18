@@ -12,8 +12,16 @@
 /* =Theme customization starts here. Any CSS code entered here will overwrite the parent's CSS.
 -------------------------------------------------------------- */
 
+body.page .cb-tags {
+    display: none;
+}
 
-
+.vc_btn3.vc_btn3-color-juicy-pink,
+.vc_btn3.vc_btn3-color-juicy-pink.vc_btn3-style-flat,
+.vc_btn3.vc_btn3-color-juicy-pink:hover,
+.vc_btn3.vc_btn3-color-juicy-pink.vc_btn3-style-flat:hover {
+    background-color: #ec187c;
+}
 
 .wtn-social {
     list-style: none !important;
@@ -30,7 +38,8 @@
 .wtn-venue-info {
     margin-top: 0 !important;
     list-style: none !important;
-    font-size: 14px;
+    line-height: 1.5em;
+    font-size: 15px;
 }
 	.wtn-venue-info li {
 		margin-bottom: 15px;
@@ -48,6 +57,7 @@
             padding-bottom: 0;
             border: 0;
             text-align: center;
+            white-space: nowrap;
         }
             .wtn-venue-info .wtn-venue-info-hours-entry:nth-of-type(3) td {
                 padding-top: 5px;
@@ -57,18 +67,25 @@
     height: 273px;
 }
 
+.wtn-events-header {
+    margin-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #e7e7e7;
+    background-color: #f0f0f0;
+    font-weight: normal;
+}
+    .wtn-events-header span {
+        display: block;
+        font-weight: bold;
+    }
+
 .wtn-events {
     font-size: 16px;
 }
-    .wtn-events-header th {
-        font-weight: normal;
-    }
-        .wtn-events-header th span {
-            display: block;
-            font-weight: bold;
-        }
-    .wtn-events-none td {
-        text-align: center;
+    .wtn-events-header,
+    .wtn-events-none {
+         text-align: center;
     }
 
     .wtn-events-event-name {

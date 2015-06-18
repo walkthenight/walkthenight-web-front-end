@@ -10,15 +10,19 @@ var WTN = WTN || {
 	apiServerPath: '',
 	apiDataTypePath: '',
 	apiDataTypeId: '',
+
 	venueData: {},
-	eventProps: {},
 	$newHoursRow: {},
+	eventProps: {},
 	$newEventRow: {},
+
 	mapZoomLevel: 14,
 
-	getInfoData: function() {
-		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId, function(data) {
+	getInfoData: function(callbacks) {
+		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId, function(data) {console.log(data);
 			WTN.venueData = data;
+
+			callbacks.call();
 		});
 	},
 
@@ -96,6 +100,7 @@ var WTN = WTN || {
 		
 		WTN.addNewHoursCell(hoursEntry.openingDay);
 		WTN.formatVenueHoursTime(hoursEntry.openingTime);
+		WTN.addTimeTo();
 		WTN.formatVenueHoursTime(hoursEntry.closingTime);
 		
 		WTN.$newHoursRow.appendTo('.wtn-venue-info-hours table tbody');
@@ -117,8 +122,17 @@ var WTN = WTN || {
 			.find('.wtn-venue-info-hours-data-proto')
 				.clone()
 					.addClass('wtn-venue-info-hours-data')
-					.removeClass('wtn-venue-info-hours-data-proto hidden')
 					.html(displayValue)
+					.removeClass('wtn-venue-info-hours-data-proto hidden')
+					.appendTo(WTN.$newHoursRow);
+	},
+
+	addTimeTo: function() {
+		WTN.$newHoursRow
+			.find('.wtn-venue-info-hours-data-proto')
+				.clone()
+					.html('to')
+					.removeClass('wtn-venue-info-hours-data-proto hidden')
 					.appendTo(WTN.$newHoursRow);
 	},
 
@@ -200,7 +214,7 @@ var WTN = WTN || {
 		}
 	},
 
-	createNewEventRow: function(thisEvent) {
+	createNewEventRow: function(thisEvent) {	// refactor after redesign
 		WTN.$newEventRow = $j('.wtn-events-event-proto')
 								.clone()
 				    				.addClass('wtn-events-event')
@@ -224,9 +238,9 @@ var WTN = WTN || {
 				    								WTN.getInfoData();
 
 				    								$locationCell
-				    									.wrap('a')
+				    									.wrapInner('<a></a>')
 				    									.find('a')
-				    										.attr('href', '[VENUE PAGE URL GOES HERE]');
+				    										.attr('href', '#'); //[VENUE PAGE URL GOES HERE]
 				    							}
 			    							}
 			    						})
