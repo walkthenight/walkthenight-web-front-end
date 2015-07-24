@@ -19,23 +19,39 @@ var WTN = WTN || {
 	mapZoomLevel: 14,
 
 	getInfoData: function(callbacks) {
-		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId, function(data) {
+		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId;
+
+		$j.getJSON(apiPath, function(data) {
 			WTN.venueData = data;
 
-			callbacks.call();
+			if (callbacks) {
+				callbacks.call();
+			}
 		});
 	},
 
 	parseEventsData: function() {
-		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId + '/events', function(data) {
-			WTN.populateEventsList(data);
-		});
+		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId + '/events';
+
+		$j.getJSON(apiPath,
+			function(data) {
+				WTN.populateEventsList(data);
+			})
+			.fail(function() {
+				WTN.showNoEventsBlock();
+			});
 	},
 
 	parsePhotosData: function() {
-		$j.getJSON(WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId + '/photos', function(data) {
-			WTN.populatePhotos(data);
-		});
+		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId + '/photos';
+
+		$j.getJSON(apiPath,
+			function(data) {
+				WTN.populatePhotos(data);
+			})
+			.fail(function() {
+				WTN.hideLoaderIcon('.wtn-photos');
+			});
 	},
 
 	populateSocialLinks: function() {
@@ -147,8 +163,10 @@ var WTN = WTN || {
 	},
 
 	populateMap: function() {
-		if (!WTN.venueData.latitude || !WTN.venueData.longitude) {
-			WTN.hideLoaderIcon('.wtn-map-container');
+		var noCoords = (!WTN.venueData.latitude || !WTN.venueData.longitude);
+
+		if (noCoords) {
+			$j('.wtn-map-row').addClass('hidden');
 			return;
 		}
 
@@ -172,13 +190,18 @@ var WTN = WTN || {
 
 	populateEventsList: function(data) {
 		if (data.length < 1) {
-			$j('.wtn-events-none').removeClass('hidden');
+			WTN.showNoEventsBlock();
 			return;
 		}
 
 		$j.each(data, function(i, thisEvent) {
 			WTN.parseEvent(thisEvent);
 		});
+	},
+
+	showNoEventsBlock: function() {
+		$j('.wtn-events-none').removeClass('hidden');
+		WTN.hideLoaderIcon('.wtn-events');
 	},
 
 	parseEvent: function(thisEvent) {
@@ -324,5 +347,11 @@ var WTN = WTN || {
 		});
 
 		WTN.hideLoaderIcon('.wtn-photos');
+	},
+
+	populateEventsHeader: function() {
+		var venueName = $j('h1.cb-entry-title').html();
+
+		$j('.wtn-events-header span').html(venueName);
 	}
 };
