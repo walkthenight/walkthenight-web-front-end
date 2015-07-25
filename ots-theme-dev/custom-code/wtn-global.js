@@ -4,7 +4,7 @@ var $j = jQuery.noConflict();
 // Global brand object
 var WTN = WTN || {
 
-	// minutes in timezone offset - change according to location of WTN city
+	// minutes in timezone offset - set in wtn-city-[cityname].js
 	timeOffset: 0,
 	
 	apiServerPath: '',
@@ -133,7 +133,10 @@ var WTN = WTN || {
 	},
 
 	formatVenueHoursTime: function(value) {
-		var timeParts = value.split(':'),
+		var timeIncludesColon = (value.indexOf(':') > -1),
+			timesSplitByColon = value.split(':'),
+			timesSplitWithoutColon = [value.slice(0,2), value.slice(3,5)],
+			timeParts = (timeIncludesColon) ? timesSplitByColon : timesSplitWithoutColon,
 			timeObj = moment({
 				hour: timeParts[0],
 				minute: timeParts[1]
