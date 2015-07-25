@@ -12,9 +12,80 @@
 /* =Theme customization starts here. Any CSS code entered here will overwrite the parent's CSS.
 -------------------------------------------------------------- */
 
+.hidden {
+    display: none !important;
+}
+
+body {
+    font-size: 18px !important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
 body.page .cb-tags {
     display: none;
 }
+
+#logo, #mob-logo {
+    line-height: 1 !important;
+}
+
+p.wp-caption-text {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #888888;
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0em;
+}
+
+.cb-entry-content .alignnone {
+    padding: 1rem 0 0.5rem 0;
+}
+
+.cb-module-header .cb-module-title {
+    margin: 0;
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0px;
+    padding: 0 30px 0 0;
+    line-height: 1.2;
+    text-transform: none;
+}
+
+.cb-body-light .cb-module-header .cb-module-title:after {
+    background: none;
+}
+
+.cb-entry-content a:hover {
+    text-decoration: none;
+}
+
+.cb-entry-content a {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
+    background-repeat: repeat-x;   
+    text-decoration: none;
+    background-size: 2px 2px;
+    background-position: 0 18px;
+    background-color:transparent;
+    color: inherit;
+}
+
+.cb-body-light h2 {
+    font-size: 1.25rem;
+    margin-top: 2.5rem;
+    color: #888888;
+}
+
+.cb-body-light h2, .cb-body-light h2 b, .cb-body-light h2 strong {
+    font-weight: 300;   
+}
+
+#ads-125-2 ul li p, #ads-125-2 ul li {
+    width: 100%;
+    margin: 0;
+}
+
 
 .vc_btn3.vc_btn3-color-juicy-pink,
 .vc_btn3.vc_btn3-color-juicy-pink.vc_btn3-style-flat,
@@ -124,3 +195,38 @@ body.page .cb-tags {
         .wtn-photos-img img {
             width: 100%;
         }
+
+
+
+
+
+/*  tablet & desktop    */
+@media only screen and (min-width: 768px) {
+    .cb-main {
+        width: auto !important;
+    }
+}
+
+
+
+/*  tablet & small desktop   */
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+    .wtn-map-container {
+        clear: both;
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+
+
+/*  mobile    */
+@media only screen and (max-width: 767px) {
+    .cb-fis h1 {
+        font-size: 30px !important;
+    }
+
+    .wpb_text_column .wtn-venue-info-hours {
+        margin-bottom: 20px;
+    }
+}
