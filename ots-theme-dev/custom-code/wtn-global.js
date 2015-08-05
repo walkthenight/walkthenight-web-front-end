@@ -4,7 +4,7 @@ var $j = jQuery.noConflict();
 // Global brand object
 var WTN = WTN || {
 
-	// minutes in timezone offset - set in wtn-city-[cityname].js
+	// timezone offset in minutes - set in wtn-city-[cityname].js
 	timeOffset: 0,
 	
 	apiServerPath: '',
@@ -97,25 +97,30 @@ var WTN = WTN || {
 		    	return;
 		    }
 		    	
-	    	WTN.parseVenueParams(param, value);
+	    	WTN.parseVenueParam(param, value);
 		});
 
 		WTN.hideLoaderIcon('.wtn-venue-info');
 	},
 
-	parseVenueParams: function(param, value) {
+	parseVenueParam: function(param, value) {
+		var phoneLink = '<a href="tel:' + value + '">' + value + '</a>',
+			$venueParamDataCell = $j('.wtn-venue-info-' + param);
+
 		if (param === 'hours') {
 			$j.each(value, function(i, hoursEntry) {
 	    		WTN.parseVenueHours(hoursEntry);
 	    	});
-
-			$j('.wtn-venue-info-hours').removeClass('hidden');
 		}
 		else {
-			$j('.wtn-venue-info-' + param)
-				.html(value)
-				.removeClass('hidden');
+			if (param === 'phone') {
+				value = phoneLink;
+			}
+
+			$venueParamDataCell.html(value);
 		}
+
+		$venueParamDataCell.removeClass('hidden')
 	},
 
 	parseVenueHours: function(hoursEntry) {
@@ -222,19 +227,30 @@ var WTN = WTN || {
 			this.localTimeOffset = moment().utcOffset();
 			this.eventTimeOffset = WTN.timeOffset;
 			this.displayTimeOffset = this.eventTimeOffset - this.localTimeOffset;
+
 			this.dateAndTimeFormat = 'dddd, MMMM Do YYYY,<br />h:mma';
-			this.dateOnlyFormat = 'dddd, MMMM Do YYYY';
+			this.fullDateOnlyFormat = 'dddd, MMMM Do YYYY';
+			this.monthOnlyFormat = 'MMM';
+			this.dateOnlyFormat = 'D';
+			this.dayOnlyFormat = 'ddd';
 			this.timeOnlyFormat = 'h:mma';
 
 			this.startTime = moment(thisEvent.startTime);
 			this.startTimeCorrected = moment(thisEvent.startTime).add(this.displayTimeOffset, 'minutes');
 			this.startTimeHasHours = this.startTime.hour();
+			this.startTimeStr = '';
+
 			this.endTime = moment(thisEvent.endTime);
 			this.endTimeCorrected = this.endTime.add(this.displayTimeOffset, 'minutes');
 			this.endTimeStr = '';
 
 			this.endTimeIsSameDateAsStartTime = moment(this.startTimeCorrected).isSame(this.endTimeCorrected, 'day');
 			this.endTimeIsBefore5Am = (moment(this.endTimeCorrected).hour() < 5);
+
+			this.month = this.startTimeCorrected.format(this.monthOnlyFormat);
+			this.date = this.startTimeCorrected.format(this.dateOnlyFormat);
+			this.day = this.startTimeCorrected.format(this.dayOnlyFormat);
+			this.timeOnly = this.startTimeCorrected.format(this.timeOnlyFormat);
 		};
 	},
 
@@ -243,7 +259,7 @@ var WTN = WTN || {
 			WTN.eventProps.startTimeStr = WTN.eventProps.startTimeCorrected.format(WTN.eventProps.dateAndTimeFormat);
 		}
 		else {
-			WTN.eventProps.startTimeStr = WTN.eventProps.startTimeCorrected.format(WTN.eventProps.dateOnlyFormat);
+			WTN.eventProps.startTimeStr = WTN.eventProps.startTimeCorrected.format(WTN.eventProps.fullDateOnlyFormat);
 		}
 	},
 
@@ -258,55 +274,90 @@ var WTN = WTN || {
 		}
 	},
 
-	createNewEventRow: function(thisEvent) {	// refactor after redesign
+	createNewEventRow: function(thisEvent) {
+		WTN.initNewEventRow();
+		WTN.addEventRowDate();
+		WTN.addEventRowMonth();
+		WTN.addEventRowName(thisEvent);
+		WTN.addEventRowDay();
+		WTN.addEventRowLocation(thisEvent);
+		WTN.addEventRowPrice(thisEvent);
+	},
+
+	initNewEventRow: function() {
 		WTN.$newEventRow = $j('.wtn-events-event-proto')
 								.clone()
 				    				.addClass('wtn-events-event')
-				    				.removeClass('wtn-events-event-proto')
-			    					.find('.wtn-events-event-name')
-			    						.html(thisEvent.name)
-			    						.end()
-			    					.find('.wtn-events-event-location')
-			    						.each(function() {
-			    							var $locationCell = $j(this);
+				    				.removeClass('wtn-events-event-proto');
+	},
 
-			    							if (thisEvent.place && WTN.apiDataTypePath === 'series/') {
-			    								if (thisEvent.place.name) {
-				    								$locationCell
-				    									.html(thisEvent.place.name)
-				    									.removeClass('hidden');
-				    							}
-				    							if (thisEvent.place.id) {
-				    								WTN.venueId = thisEvent.place.id;
-				    								
-				    								WTN.getInfoData();
+	addEventRowDate: function() {
+		WTN.$newEventRow
+			.find('.wtn-events-event-date-date')
+		    	.html(WTN.eventProps.date);
+	},
 
-				    								$locationCell
-				    									.wrapInner('<a></a>')
-				    									.find('a')
-				    										.attr('href', '#'); //[VENUE PAGE URL GOES HERE]
-				    							}
-			    							}
-			    						})
-			    						.end()
-			    					.find('.wtn-events-event-date')
-			    						.html(WTN.eventProps.startTimeStr + WTN.eventProps.endTimeStr)
-			    						.end()
-			    					.find('.wtn-events-event-price span')
-			    						.each(function() {
-			    							var $locationCell = $j(this);
+	addEventRowMonth: function() {
+		WTN.$newEventRow
+			.find('.wtn-events-event-date-month')
+		    	.html(WTN.eventProps.month);
+	},
 
-			    							if (thisEvent.place) {
-			    								if (thisEvent.place.name) {
-				    								$locationCell
-				    									.find('span')
-					    									.html(thisEvent.place.name)
-					    									.removeClass('hidden');
-				    							}
-			    							}
-			    						})
-				    					.html(thisEvent.price)
-				    					.end();	// end() necessary as part of the statement setting the value of WTN.$newEventRow
+	addEventRowName: function(thisEvent) {
+		WTN.$newEventRow
+			.find('.wtn-events-event-name-name')
+			    .html(thisEvent.name);
+	},
+
+	addEventRowDay: function() {
+		WTN.$newEventRow
+			.find('.wtn-events-event-name-day')
+		    	.html(WTN.eventProps.day + ' ' + WTN.eventProps.timeOnly);
+	},
+
+	addEventRowLocation: function(thisEvent) {
+		WTN.$newEventRow
+			.find('.wtn-events-event-location')
+				.each(function() {
+					var $locationCell = $j(this);
+
+					if (thisEvent.place && WTN.apiDataTypePath === 'series/') {
+						if (thisEvent.place.name) {
+							$locationCell
+								.html(thisEvent.place.name)
+								.removeClass('hidden');
+						}
+
+						if (thisEvent.place.id) {
+							WTN.venueId = thisEvent.place.id;
+							
+							WTN.getInfoData();
+
+							$locationCell
+								.wrapInner('<a></a>')
+								.find('a')
+									.attr('href', '#'); //[VENUE PAGE URL WILL GO HERE]
+						}
+					}
+				});
+	},
+
+	addEventRowPrice: function(thisEvent) {
+		WTN.$newEventRow
+			.find('.wtn-events-event-price span')
+				.each(function() {
+					var $locationCell = $j(this);
+
+					if (thisEvent.place) {
+						if (thisEvent.place.name) {
+							$locationCell
+								.find('span')
+									.html(thisEvent.place.name)
+									.removeClass('hidden');
+						}
+					}
+				})
+				.html(thisEvent.price);
 	},
 
 	wrapEventItemsInAnchors: function(thisEvent) {
@@ -327,7 +378,7 @@ var WTN = WTN || {
 
 	appendNewEventRow: function() {
 		WTN.$newEventRow
-			.appendTo('.wtn-events table')
+			.appendTo('.wtn-events-table')
 			.removeClass('hidden');
 	},
 

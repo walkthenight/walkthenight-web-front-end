@@ -167,7 +167,7 @@ p.wp-caption-text {
         font-weight: bold;
     }
 
-.wtn-events table {
+.wtn-events-table {
     font-size: 16px;
 }
     .wtn-events-header,
@@ -175,9 +175,23 @@ p.wp-caption-text {
          text-align: center;
     }
 
-    .wtn-events-event-name {
-        font-weight: bold;
+    .wtn-events-event-date {
+        text-align: center;
     }
+        .wtn-events-event-date var {
+            display: block;
+            line-height: 1.1em;
+            font-size: 36px;
+        }
+
+    .cb-entry-content table tr td.wtn-events-event-name {
+        padding-left: 20px;
+    }
+        .wtn-events-event-name p {
+            margin-bottom: 0;
+            line-height: 1.5em;
+            font-weight: bold;
+        }
 
 
 .wtn-photos ul {
