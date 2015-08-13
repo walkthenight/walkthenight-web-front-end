@@ -15,3 +15,5 @@ $j(function() {
 	WTN.parsePhotosData();
 
 });
+
+});

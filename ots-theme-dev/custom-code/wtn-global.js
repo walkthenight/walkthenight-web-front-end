@@ -408,4 +408,20 @@ var WTN = WTN || {
 
 		$j('.wtn-events-header span').html(venueName);
 	}
+};hotos-img-proto')
+					.find('img')
+						.attr('src', photoUrl)
+						.end()
+					.appendTo('.wtn-photos ul')
+					.removeClass('hidden');
+		});
+
+		WTN.hideLoaderIcon('.wtn-photos');
+	},
+
+	populateEventsHeader: function() {
+		var venueName = $j('h1.cb-entry-title').html();
+
+		$j('.wtn-events-header span').html(venueName);
+	}
 };

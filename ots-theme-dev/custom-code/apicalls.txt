@@ -4,6 +4,7 @@ http://alpha.walkthenight.com/api/venues/412592498769848/events
 http://alpha.walkthenight.com/api/venues/198578395903/photos
 http://alpha.walkthenight.com/api/series/1559619647628601/
 http://alpha.walkthenight.com/api/series/1559619647628601/events
+http://alpha.walkthenight.com/api/events/730625977043037
 
 Upcoming:
 http://alpha.walkthenight.com/api/series/1559619647628601/photos
