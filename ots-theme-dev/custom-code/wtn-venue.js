@@ -5,15 +5,12 @@ $j(function() {
 	WTN.apiDataTypePath = 'venues/';
 	WTN.apiDataTypeId = WTN.venueId;
 
-	WTN.getInfoData(function() {
+	WTN.getMainData(function() {
 		WTN.populateSocialLinks();
 		WTN.populateVenueInfo();
 		WTN.populateMap();
 	});
 
-	WTN.parseEventsData();
-	WTN.parsePhotosData();
-
-});
-
+	WTN.parseEventsData(WTN.apiDataTypeId);
+	WTN.parsePhotosData(WTN.apiDataTypeId);
 });

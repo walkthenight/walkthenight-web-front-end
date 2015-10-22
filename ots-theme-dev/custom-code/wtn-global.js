@@ -1,11 +1,9 @@
-// Global shorthand for using jQuery in Wordpress
-var $j = jQuery.noConflict();
+var $j = jQuery.noConflict();	// Global var: shorthand for using jQuery in Wordpress
 
 // Global brand object
 var WTN = WTN || {
 
-	// timezone offset in minutes - set in wtn-city-[cityname].js
-	timeOffset: 0,
+	timeOffset: 0,	// timezone offset in minutes - set in wtn-city-[cityname].js
 	
 	apiServerPath: '',
 	apiDataTypePath: '',
@@ -16,34 +14,55 @@ var WTN = WTN || {
 	eventProps: {},
 	$newEventRow: {},
 
+	seriesData: {},
+
+	eventData: {},
+	eventId: '',
+	eventsTimeframe: '?timeframe=future',	// which events get requested from FB API call :: Value = future|past|all[default]
+	seriesAssociatedWithEvent: [],
+
 	mapZoomLevel: 14,
 
-	getInfoData: function(callbacks) {
+	getMainData: function(callbacks) {
 		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId;
 
-		$j.getJSON(apiPath, function(data) {
-			WTN.venueData = data;
+		$j.getJSON(apiPath,
+			function(data) {
+				if (WTN.apiDataTypePath === 'venues/') {
+					WTN.venueData = data;
+				}
+				else if (WTN.apiDataTypePath === 'series/') {
+					WTN.seriesData = data;
+				}
 
-			if (callbacks) {
-				callbacks.call();
-			}
-		});
+				WTN.doCallbacksIfData(data, callbacks);
+			})
+			.fail(function() {
+				WTN.hideLoaderIcon('.wtn-social');
+			});
 	},
 
-	parseEventsData: function() {
-		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId + '/events';
+	doCallbacksIfData: function(data, callbacks) {
+		if (data && callbacks) {
+			callbacks.call();
+		}
+	},
+
+	parseEventsData: function(apiId) {
+		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + apiId + '/events' + WTN.eventsTimeframe;
 
 		$j.getJSON(apiPath,
 			function(data) {
 				WTN.populateEventsList(data);
 			})
 			.fail(function() {
-				WTN.showNoEventsBlock();
+				WTN.hideEventsBlock();
 			});
 	},
 
-	parsePhotosData: function() {
-		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId + '/photos';
+	// TO DO: Loop all series in array to pull more photos (for event page)
+	parsePhotosData: function(apiId) {
+		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + apiId + '/photos';
 
 		$j.getJSON(apiPath,
 			function(data) {
@@ -54,26 +73,98 @@ var WTN = WTN || {
 			});
 	},
 
-	populateSocialLinks: function() {
-		var socialLinks = {
-			email: WTN.venueData.email,
-			facebook: WTN.venueData.facebookUrl,
-			instagram: WTN.venueData.instagramHandle,
-			twitter: WTN.venueData.twitterHandle,
-			web: WTN.venueData.website
-		};
+	getMatchingSeriesIds: function(eventId, callbacks) {
+		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + eventId + '/series';
 
-		$j.each(socialLinks, function(key, value) {
-		    if (!value) {
-		    	return;
-		    }
+		$j.getJSON(apiPath, function(data) {
+			WTN.seriesAssociatedWithEvent = data[0];	// only use first returned series ID for now
 
-			$j('.wtn-social-' + key)
-				.find('a')
-					.attr('href', value)
-					.end()
-				.removeClass('hidden');
+			WTN.doCallbacksIfData(data, callbacks);
 		});
+	},
+
+	parseSingleEventData: function(seriesId) {
+		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + WTN.apiDataTypeId;
+
+		$j.getJSON(apiPath,
+			function(data) {
+				WTN.populateEventData(data, seriesId);
+			})
+			.fail(function() {
+				WTN.hideLoaderIcon('.wtn-photos');
+			});
+
+		WTN.apiDataTypePath = 'series/';
+		WTN.apiDataTypeId = seriesId;
+		
+		WTN.getMainData(function() {
+			WTN.populateSocialLinks();
+		});
+	},
+
+	populateEventData: function(data, seriesId) {
+		WTN.eventData = data;
+		WTN.venueData = data.place;
+
+		WTN.populateMainImage();
+		WTN.populateName();
+		WTN.populateDescription();
+		WTN.populateVenueInfo();
+		WTN.populateMap();
+
+		WTN.apiDataTypePath = 'series/';
+
+		WTN.parsePhotosData(seriesId);
+	},
+
+	populateMainImage: function() {
+		$j.backstretch(WTN.eventData.picture, {fade: 1200});
+
+		$j('.wtn-event-cover-image').attr('src', WTN.eventData.picture);
+	},
+
+	populateName: function() {
+		$j('h1.cb-entry-title')
+			.html(WTN.eventData.name)
+			.removeClass('indentHide loaderBg');
+	},
+
+	populateDescription: function() {
+		$j('.wtn-event-blurb').html(WTN.eventData.description);
+	},
+
+	populateSocialLinks: function() {
+		var mainData;
+
+		if (WTN.apiDataTypePath === 'venues/') {
+			mainData = WTN.venueData;
+		}
+		else if (WTN.apiDataTypePath === 'series/') {
+			mainData = WTN.seriesData;
+		}
+
+		if (mainData) {
+
+			var socialLinks = {
+				email: (mainData.email) ? 'mailto:' + mainData.email : undefined,
+				facebook: (mainData.facebookUrl) ? mainData.facebookUrl : mainData.facebookPage,
+				instagram: (mainData.instagramHandle) ? 'https://instagram.com/' + mainData.instagramHandle : undefined,
+				twitter: (mainData.twitterHandle) ? 'https://twitter.com/' + mainData.twitterHandle : undefined,
+				web: mainData.website
+			};
+
+			$j.each(socialLinks, function(key, value) {
+			    if (!value) {
+			    	return;
+			    }
+
+				$j('.wtn-social-' + key)
+					.find('a')
+						.attr('href', value)
+						.end()
+					.removeClass('hidden');
+			});
+		}
 
 		WTN.hideLoaderIcon('.wtn-social');
 	},
@@ -124,17 +215,20 @@ var WTN = WTN || {
 	},
 
 	parseVenueHours: function(hoursEntry) {
-		WTN.$newHoursRow = $j('.wtn-venue-info-hours-proto')
-				    			.clone()
-				    				.addClass('wtn-venue-info-hours-entry')
-				    				.removeClass('wtn-venue-info-hours-proto hidden');
-		
+		WTN.createNewHoursRow();
 		WTN.addNewHoursCell(hoursEntry.openingDay);
 		WTN.formatVenueHoursTime(hoursEntry.openingTime);
 		WTN.addTimeTo();
 		WTN.formatVenueHoursTime(hoursEntry.closingTime);
 		
 		WTN.$newHoursRow.appendTo('.wtn-venue-info-hours table tbody');
+	},
+
+	createNewHoursRow: function() {
+		WTN.$newHoursRow = $j('.wtn-venue-info-hours-proto')
+				    			.clone()
+				    				.addClass('wtn-venue-info-hours-entry')
+				    				.removeClass('wtn-venue-info-hours-proto hidden');
 	},
 
 	formatVenueHoursTime: function(value) {
@@ -178,7 +272,9 @@ var WTN = WTN || {
 			return;
 		}
 
-		var venueCoords = new google.maps.LatLng(WTN.venueData.latitude, WTN.venueData.longitude),
+		var latitude = WTN.venueData.latitude,
+			longitude = WTN.venueData.longitude,
+			venueCoords = new google.maps.LatLng(latitude, longitude),
 
 			mapOptions = {
 				center: venueCoords,
@@ -198,7 +294,7 @@ var WTN = WTN || {
 
 	populateEventsList: function(data) {
 		if (data.length < 1) {
-			WTN.showNoEventsBlock();
+			WTN.hideEventsBlock();
 			return;
 		}
 
@@ -207,8 +303,8 @@ var WTN = WTN || {
 		});
 	},
 
-	showNoEventsBlock: function() {
-		$j('.wtn-events-none').removeClass('hidden');
+	hideEventsBlock: function() {
+		$j('.wtn-events').addClass('hidden');
 		WTN.hideLoaderIcon('.wtn-events');
 	},
 
@@ -328,15 +424,14 @@ var WTN = WTN || {
 								.removeClass('hidden');
 						}
 
-						if (thisEvent.place.id) {
-							WTN.venueId = thisEvent.place.id;
-							
-							WTN.getInfoData();
+						if (thisEvent.wtnVenueUrl) {
+							var venueFullUrl = '/' + WTN.cityPath + '/venues/' + thisEvent.wtnVenueUrl;
 
 							$locationCell
 								.wrapInner('<a></a>')
 								.find('a')
-									.attr('href', '#'); //[VENUE PAGE URL WILL GO HERE]
+									.attr('target', '_blank')
+									.attr('href', venueFullUrl);
 						}
 					}
 				});
@@ -361,19 +456,24 @@ var WTN = WTN || {
 	},
 
 	wrapEventItemsInAnchors: function(thisEvent) {
-		if (thisEvent.url) {
-			WTN.$newEventRow
-				.find('.wtn-events-event-name')
-					.wrapInner('a')
-					.find('a')
-						.attr('href', thisEvent.url)
-						.end()
-					.end()
-				.find('.wtn-events-event-date')
-					.wrapInner('a')
-					.find('a')
-						.attr('href', thisEvent.url);
+		if (!thisEvent.wtnManagedEventUrlName && !thisEvent.id) {
+			return;
 		}
+
+		var eventUrlSuffix = (thisEvent.wtnManagedEventUrlName) ? thisEvent.wtnManagedEventUrlName : '#' + thisEvent.id,
+			eventUrl = '/' + WTN.cityPath + '/event/' + eventUrlSuffix;
+
+		WTN.$newEventRow
+			.find('.wtn-events-event-name-name')
+				.wrapInner('<a></a>')
+				.find('a')
+					.attr('href', eventUrl)
+					.end()
+				.end()
+			.find('.wtn-events-event-date')
+				.wrapInner('<a></a>')
+				.find('a')
+					.attr('href', eventUrl);
 	},
 
 	appendNewEventRow: function() {
@@ -404,24 +504,12 @@ var WTN = WTN || {
 	},
 
 	populateEventsHeader: function() {
-		var venueName = $j('h1.cb-entry-title').html();
+		var headerName = $j('h1.cb-entry-title').html();
 
-		$j('.wtn-events-header span').html(venueName);
-	}
-};hotos-img-proto')
-					.find('img')
-						.attr('src', photoUrl)
-						.end()
-					.appendTo('.wtn-photos ul')
-					.removeClass('hidden');
-		});
+		if (!headerName) {
+			return;
+		}
 
-		WTN.hideLoaderIcon('.wtn-photos');
-	},
-
-	populateEventsHeader: function() {
-		var venueName = $j('h1.cb-entry-title').html();
-
-		$j('.wtn-events-header span').html(venueName);
+		$j('.wtn-events-header span').html(headerName);
 	}
 };

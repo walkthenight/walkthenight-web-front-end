@@ -1,16 +1,14 @@
 $j(function() {
 
+	WTN.populateEventsHeader();
+
 	WTN.apiDataTypePath = 'series/';
 	WTN.apiDataTypeId = WTN.seriesId;
 
-	WTN.getInfoData(function() {
+	WTN.getMainData(function() {
 		WTN.populateSocialLinks();
-		WTN.populateMap();
 	});
 	
-	WTN.parseEventsData();
-	WTN.parsePhotosData();
-
-});
-
+	WTN.parseEventsData(WTN.apiDataTypeId);
+	WTN.parsePhotosData(WTN.apiDataTypeId);
 });

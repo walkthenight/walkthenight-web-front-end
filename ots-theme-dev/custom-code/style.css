@@ -12,8 +12,20 @@
 /* =Theme customization starts here. Any CSS code entered here will overwrite the parent's CSS.
 -------------------------------------------------------------- */
 
+/*
+    juicy pink #ec187c
+*/
+
+
 .hidden {
     display: none !important;
+}
+.indentHide {
+    text-indent: -900em;
+}
+
+.fullWidth {
+    width: 100%;
 }
 
 body {
@@ -22,7 +34,8 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-body.page .cb-tags {
+body.page .cb-tags,,
+.page-id-899 .cb-sidebar {
     display: none;
 }
 
@@ -86,6 +99,10 @@ p.wp-caption-text {
     margin: 0;
 }
 
+.wtn-event-blurb {
+    word-wrap: break-word;
+}
+
 
 .vc_btn3.vc_btn3-color-juicy-pink,
 .vc_btn3.vc_btn3-color-juicy-pink.vc_btn3-style-flat,
@@ -104,6 +121,14 @@ p.wp-caption-text {
         max-height: 100%;
         margin: 0 auto;
     }
+.loaderBg {
+    background: url(/wp-content/uploads/sites/2/2015/04/loading.gif) 50% 0 no-repeat;
+}
+
+/* main content left column */
+.cb-entry-content > .vc_row > .vc_col-sm-6.wpb_column.vc_column_container:first-child {
+    padding-right: 15px;
+}
 
 .wtn-social {
     height: 20px;
@@ -131,10 +156,19 @@ p.wp-caption-text {
     }
     	.wtn-venue-info li {
     		margin-bottom: 15px;
+            text-align: right;
     	}
             .wtn-venue-info-name {
+                font-size: 16px;
                 font-weight: bold;
             }
+            .wtn-venue-info-address,
+            .wtn-venue-info-phone {
+                font-size: 16px;
+            }
+                .wtn-venue-info-phone a {
+                    background: none !important;
+                }
             .wtn-venue-info .wtn-venue-info-hours th {
                 padding-top: 5px;
                 padding-bottom: 3px;
@@ -170,35 +204,51 @@ p.wp-caption-text {
 .wtn-events-table {
     font-size: 16px;
 }
-    .wtn-events-header,
-    .wtn-events-none {
+    .wtn-events-header {
          text-align: center;
     }
 
     .wtn-events-event-date {
         text-align: center;
     }
+        .wtn-events-event-date a {
+            background: none !important;
+        }
         .wtn-events-event-date var {
             display: block;
             line-height: 1.1em;
             font-size: 36px;
         }
+    .wtn-events-event-location {
+        text-align: right;
+    }
 
     .cb-entry-content table tr td.wtn-events-event-name {
         padding-left: 20px;
     }
-        .wtn-events-event-name p {
-            margin-bottom: 0;
-            line-height: 1.5em;
-            font-weight: bold;
+        .wtn-events-event-name-name {
+            margin: 0;
         }
+            .wtn-events-event-name p a {
+                margin-top: 0;
+                margin-bottom: 0;
+                background: none !important;
+                line-height: 1em;
+                font-weight: bold;
+            }
+                .wtn-events-event-name p a * {
+                   font-weight: bold;
+                }
+                .wtn-events-event-name p a:hover {
+                    text-decoration: underline;
+                }
 
 
 .wtn-photos ul {
     list-style: none !important;
 }
     .wtn-photos-img {
-        float: left;
+        display: inline-block;
         width: 48%;
         margin-right: 1.5%;
         line-height: normal;
@@ -210,6 +260,27 @@ p.wp-caption-text {
             width: 100%;
         }
 
+
+.tickera-checkout {
+    font-family: "adelle", sans-serif;
+}
+.cart_form,
+.tc_in_cart {
+    font-size: 28px;
+}
+    .add_to_cart {
+        padding: 5px 8px 4px;
+        border: 2px solid #ec187c;
+        background: #FCC3DE !important;
+    }
+        .add_to_cart a {
+            background: none !important;
+        }
+
+/* Tickera Cart page */
+.page-id-899 .cb-main {
+    width: 100% !important;
+}
 
 
 
