@@ -14,6 +14,8 @@
 
 /*
     juicy pink #ec187c
+    dark pink bg #BB0058
+    ligh pink bg #FCC3DE
 */
 
 
@@ -37,6 +39,10 @@ body {
 body.page .cb-tags,,
 .page-id-899 .cb-sidebar {
     display: none;
+}
+
+.cb-main a {
+    background-image: none !important;
 }
 
 #logo, #mob-logo {
@@ -93,6 +99,18 @@ p.wp-caption-text {
 .cb-body-light h2, .cb-body-light h2 b, .cb-body-light h2 strong {
     font-weight: 300;   
 }
+
+
+.category-suicide-tuesdays .cb-entry-content h2 b,
+.category-suicide-tuesdays .cb-entry-content h2 strong {
+    font-size: 1.7rem;
+    font-weight: bold !important;
+}
+.category-suicide-tuesdays .cb-entry-content h4 {
+    font-size: 1.4rem;
+    font-weight: normal !important;
+}
+
 
 #ads-125-2 ul li p, #ads-125-2 ul li {
     width: 100%;
@@ -264,6 +282,15 @@ p.wp-caption-text {
 .tickera-checkout {
     font-family: "adelle", sans-serif;
 }
+
+.tickera-button {
+    background-color: #BB0058;
+    font-weight: bold;
+}
+    .tickera-button:hover {
+        background-color: #ec187c;
+    }
+
 .cart_form,
 .tc_in_cart {
     font-size: 28px;
@@ -287,6 +314,14 @@ p.wp-caption-text {
 
 /*  tablet & desktop    */
 @media only screen and (min-width: 768px) {
+    #cb-top-menu .cb-left-side {
+        width: 100% !important;
+    }
+        /* cart link */
+        .menu-item-932 {
+            float: right;
+        }
+        
     .cb-main {
         width: auto !important;
     }

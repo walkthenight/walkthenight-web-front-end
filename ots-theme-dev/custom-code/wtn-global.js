@@ -1,9 +1,19 @@
+/*
+	###					wtn-global.js					###
+	###		Code used in all Walk the Night cities		###
+
+	TO DO:
+		WTN.parsePhotosData() --AND-- WTN.getMatchingSeriesIds()
+			Loop all series in array to pull more photos (for event page)
+*/
+
+
 var $j = jQuery.noConflict();	// Global var: shorthand for using jQuery in Wordpress
 
 // Global brand object
 var WTN = WTN || {
 
-	timeOffset: 0,	// timezone offset in minutes - set in wtn-city-[cityname].js
+	timezoneOffsetInMinutes: 0,	// set in wtn-city-[cityname].js
 	
 	apiServerPath: '',
 	apiDataTypePath: '',
@@ -18,7 +28,7 @@ var WTN = WTN || {
 
 	eventData: {},
 	eventId: '',
-	eventsTimeframe: '?timeframe=future',	// which events get requested from FB API call :: Value = future|past|all[default]
+	eventsTimeframe: '?timeframe=future',	// which events get requested from Facebook API call :: Value = future|past|all[default]
 	seriesAssociatedWithEvent: [],
 
 	mapZoomLevel: 14,
@@ -60,7 +70,6 @@ var WTN = WTN || {
 			});
 	},
 
-	// TO DO: Loop all series in array to pull more photos (for event page)
 	parsePhotosData: function(apiId) {
 		var apiPath = WTN.apiServerPath + WTN.apiDataTypePath + apiId + '/photos';
 
@@ -144,8 +153,14 @@ var WTN = WTN || {
 		}
 
 		if (mainData) {
+			WTN.insertSocialLinks(mainData);
+		}
 
-			var socialLinks = {
+		WTN.hideLoaderIcon('.wtn-social');
+	},
+
+	insertSocialLinks: function(mainData) {
+		var socialLinks = {
 				email: (mainData.email) ? 'mailto:' + mainData.email : undefined,
 				facebook: (mainData.facebookUrl) ? mainData.facebookUrl : mainData.facebookPage,
 				instagram: (mainData.instagramHandle) ? 'https://instagram.com/' + mainData.instagramHandle : undefined,
@@ -164,9 +179,6 @@ var WTN = WTN || {
 						.end()
 					.removeClass('hidden');
 			});
-		}
-
-		WTN.hideLoaderIcon('.wtn-social');
 	},
 
 	hideLoaderIcon: function(container) {
@@ -320,34 +332,53 @@ var WTN = WTN || {
 
 	createEventPropsObj: function(thisEvent) {
 		WTN.eventProps = new function() {
-			this.localTimeOffset = moment().utcOffset();
-			this.eventTimeOffset = WTN.timeOffset;
-			this.displayTimeOffset = this.eventTimeOffset - this.localTimeOffset;
-
-			this.dateAndTimeFormat = 'dddd, MMMM Do YYYY,<br />h:mma';
-			this.fullDateOnlyFormat = 'dddd, MMMM Do YYYY';
-			this.monthOnlyFormat = 'MMM';
-			this.dateOnlyFormat = 'D';
-			this.dayOnlyFormat = 'ddd';
-			this.timeOnlyFormat = 'h:mma';
-
-			this.startTime = moment(thisEvent.startTime);
-			this.startTimeCorrected = moment(thisEvent.startTime).add(this.displayTimeOffset, 'minutes');
-			this.startTimeHasHours = this.startTime.hour();
-			this.startTimeStr = '';
-
-			this.endTime = moment(thisEvent.endTime);
-			this.endTimeCorrected = this.endTime.add(this.displayTimeOffset, 'minutes');
-			this.endTimeStr = '';
-
-			this.endTimeIsSameDateAsStartTime = moment(this.startTimeCorrected).isSame(this.endTimeCorrected, 'day');
-			this.endTimeIsBefore5Am = (moment(this.endTimeCorrected).hour() < 5);
-
-			this.month = this.startTimeCorrected.format(this.monthOnlyFormat);
-			this.date = this.startTimeCorrected.format(this.dateOnlyFormat);
-			this.day = this.startTimeCorrected.format(this.dayOnlyFormat);
-			this.timeOnly = this.startTimeCorrected.format(this.timeOnlyFormat);
+			WTN.defineEventPropstimezoneOffsetInMinutess(this);
+			WTN.defineEventPropsTimeFormats(this);
+			WTN.defineEventPropsStartTimes(this, thisEvent);
+			WTN.defineEventPropsEndTimes(this, thisEvent);
+			WTN.defineEventPropsTimeInfo(this);
+			WTN.defineEventPropsStrings(this);
 		};
+	},
+
+	defineEventPropstimezoneOffsetInMinutess: function(eventProps) {
+		eventProps.localtimezoneOffsetInMinutes = moment().utcOffset();
+		eventProps.eventtimezoneOffsetInMinutes = WTN.timezoneOffsetInMinutes;
+		eventProps.displaytimezoneOffsetInMinutes = this.eventtimezoneOffsetInMinutes - this.localtimezoneOffsetInMinutes;
+	},
+
+	defineEventPropsTimeFormats: function(eventProps) {
+		eventProps.dateAndTimeFormat = 'dddd, MMMM Do YYYY,<br />h:mma';
+		eventProps.fullDateOnlyFormat = 'dddd, MMMM Do YYYY';
+		eventProps.monthOnlyFormat = 'MMM';
+		eventProps.dateOnlyFormat = 'D';
+		eventProps.dayOnlyFormat = 'ddd';
+		eventProps.timeOnlyFormat = 'h:mma';
+	},
+
+	defineEventPropsStartTimes: function(eventProps, thisEvent) {
+		eventProps.startTime = moment(thisEvent.startTime);
+		eventProps.startTimeCorrected = moment(thisEvent.startTime).add(eventProps.displaytimezoneOffsetInMinutes, 'minutes');
+		eventProps.startTimeHasHours = eventProps.startTime.hour();
+		eventProps.startTimeStr = '';
+	},
+
+	defineEventPropsEndTimes: function(eventProps, thisEvent) {
+		eventProps.endTime = moment(thisEvent.endTime);
+		eventProps.endTimeCorrected = eventProps.endTime.add(eventProps.displaytimezoneOffsetInMinutes, 'minutes');
+		eventProps.endTimeStr = '';
+	},
+
+	defineEventPropsTimeInfo: function(eventProps) {
+		eventProps.endTimeIsSameDateAsStartTime = moment(eventProps.startTimeCorrected).isSame(eventProps.endTimeCorrected, 'day');
+		eventProps.endTimeIsBefore5Am = (moment(eventProps.endTimeCorrected).hour() < 5);
+	},
+
+	defineEventPropsStrings: function(eventProps) {
+		eventProps.month = eventProps.startTimeCorrected.format(eventProps.monthOnlyFormat);
+		eventProps.date = eventProps.startTimeCorrected.format(eventProps.dateOnlyFormat);
+		eventProps.day = eventProps.startTimeCorrected.format(eventProps.dayOnlyFormat);
+		eventProps.timeOnly = eventProps.startTimeCorrected.format(eventProps.timeOnlyFormat);
 	},
 
 	setEventDateOnly: function() {
@@ -415,26 +446,35 @@ var WTN = WTN || {
 		WTN.$newEventRow
 			.find('.wtn-events-event-location')
 				.each(function() {
-					var $locationCell = $j(this);
-
-					if (thisEvent.place && WTN.apiDataTypePath === 'series/') {
-						if (thisEvent.place.name) {
-							$locationCell
-								.html(thisEvent.place.name)
-								.removeClass('hidden');
-						}
-
-						if (thisEvent.wtnVenueUrl) {
-							var venueFullUrl = '/' + WTN.cityPath + '/venues/' + thisEvent.wtnVenueUrl;
-
-							$locationCell
-								.wrapInner('<a></a>')
-								.find('a')
-									.attr('target', '_blank')
-									.attr('href', venueFullUrl);
-						}
+					if (!thisEvent.place || WTN.apiDataTypePath !== 'series/') {
+						return;
 					}
+
+					WTN.insertEventRow(thisEvent);
+					WTN.linkEvent(thisEvent);
 				});
+	},
+
+	insertEventRow: function(thisEvent) {
+		var $locationCell = $j(this);
+		
+		if (thisEvent.place.name) {
+			$locationCell
+				.html(thisEvent.place.name)
+				.removeClass('hidden');
+		}
+	},
+
+	linkEvent: function(thisEvent) {
+		if (thisEvent.wtnVenueUrl) {
+			var venueFullUrl = '/' + WTN.cityPath + '/venues/' + thisEvent.wtnVenueUrl;
+
+			$locationCell
+				.wrapInner('<a></a>')
+				.find('a')
+					.attr('target', '_blank')
+					.attr('href', venueFullUrl);
+		}
 	},
 
 	addEventRowPrice: function(thisEvent) {
@@ -443,13 +483,11 @@ var WTN = WTN || {
 				.each(function() {
 					var $locationCell = $j(this);
 
-					if (thisEvent.place) {
-						if (thisEvent.place.name) {
-							$locationCell
-								.find('span')
-									.html(thisEvent.place.name)
-									.removeClass('hidden');
-						}
+					if (thisEvent.place && thisEvent.place.name) {
+						$locationCell
+							.find('span')
+								.html(thisEvent.place.name)
+								.removeClass('hidden');
 					}
 				})
 				.html(thisEvent.price);
